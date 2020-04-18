@@ -3,8 +3,6 @@ from tkinter import messagebox
 from tkinter import ttk
 import json
 
-
-
 def show_message():
     messagebox.showinfo("Сформировано")
 
