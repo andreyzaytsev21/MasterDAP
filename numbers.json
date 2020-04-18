@@ -1,0 +1,142 @@
+{
+    "021": {
+        "chkoap": "3",
+        "company": {
+            "actioner": {
+                "name": {
+                    "DAT": "А.П. Зайцеву",
+                    "IMEN": "А.П. Зайцев",
+                    "ROD": "А.П. Зайцева"
+                },
+                "position": "директор"
+            },
+            "address": {
+                "ad_index": "603053",
+                "naspunkt": "г. Нижний Новгород",
+                "subrf": "Нижегородская обл.",
+                "ulitsadom": "Бусыгина пр., д. 36, кв. 111"
+            },
+            "dateul": "24.01.2005",
+            "emailul": "zap-92@mail.ru",
+            "inn": "52457836",
+            "kpp": "52012401",
+            "ogrn": "1045789614",
+            "ul": "ООО «Пошел нахер»"
+        },
+        "datevozb": "24",
+        "monthvozb": "02",
+        "stkoap": "16.2"
+    },
+    "555": {
+        "chkoap": "1",
+        "company": {
+            "actioner": {
+                "name": {
+                    "DAT": "1",
+                    "IMEN": "1",
+                    "ROD": "1"
+                },
+                "position": "1"
+            },
+            "address": {
+                "ad_index": "1",
+                "naspunkt": "1",
+                "subrf": "1",
+                "ulitsadom": "1"
+            },
+            "dateul": "1",
+            "emailul": "1",
+            "inn": "1",
+            "kpp": "1",
+            "ogrn": "1",
+            "ul": "1"
+        },
+        "datevozb": "1",
+        "monthvozb": "1",
+        "stkoap": "1"
+    },
+    "666": {
+        "chkoap": "1",
+        "company": {
+            "actioner": {
+                "name": {
+                    "DAT": "1",
+                    "IMEN": "11",
+                    "ROD": "1"
+                },
+                "position": "1"
+            },
+            "address": {
+                "ad_index": "1",
+                "naspunkt": "1",
+                "subrf": "1",
+                "ulitsadom": "1"
+            },
+            "dateul": "1",
+            "emailul": "1",
+            "inn": "1",
+            "kpp": "1",
+            "ogrn": "1",
+            "ul": "1"
+        },
+        "datevozb": "1",
+        "monthvozb": "1",
+        "stkoap": "1"
+    },
+    "888": {
+        "chkoap": "1",
+        "company": {
+            "actioner": {
+                "name": {
+                    "DAT": "1",
+                    "IMEN": "1",
+                    "ROD": "1"
+                },
+                "position": "1"
+            },
+            "address": {
+                "ad_index": "1",
+                "naspunkt": "1",
+                "subrf": "1",
+                "ulitsadom": "1"
+            },
+            "dateul": "1",
+            "emailul": "1",
+            "inn": "1",
+            "kpp": "1",
+            "ogrn": "1",
+            "ul": "1"
+        },
+        "datevozb": "1",
+        "monthvozb": "1",
+        "stkoap": "1"
+    },
+    "999": {
+        "chkoap": "1",
+        "company": {
+            "actioner": {
+                "name": {
+                    "DAT": "1",
+                    "IMEN": "1",
+                    "ROD": "1"
+                },
+                "position": "1"
+            },
+            "address": {
+                "ad_index": "1",
+                "naspunkt": "1",
+                "subrf": "1",
+                "ulitsadom": "1"
+            },
+            "dateul": "1",
+            "emailul": "1",
+            "inn": "1",
+            "kpp": "1",
+            "ogrn": "1",
+            "ul": "gftdyhtrfuytruytuytu"
+        },
+        "datevozb": "1",
+        "monthvozb": "1",
+        "stkoap": "1"
+    }
+}
