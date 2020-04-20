@@ -7,5 +7,5 @@ from files.ManageDeals import runManageDeals
 
 #runEmployeeSelection()
 Employee = runEmployeeSelection()
-#runManageDeals()
+runManageDeals()
 #runSaveDeal()
