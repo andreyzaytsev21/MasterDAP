@@ -1,9 +1,9 @@
 from EmployeeSelection import *
 from ManageDeals import runManageDeals
+from SaveDeal import runSaveDeal
+from ResourcesProvider import *
 
-#from files.SaveDeal import runSaveDeal
+resourcesProvider = ResourcesProvider("../data/")
 
-runEmployeeSelection()
 
-#runManageDeals()
-#runSaveDeal()
+employee = runEmployeeSelection(resourcesProvider)

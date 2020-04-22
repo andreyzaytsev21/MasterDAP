@@ -2,8 +2,9 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter import ttk
 import json
+from ResourcesProvider import ResourcesProvider
 
-def runSaveDeal():
+def runSaveDeal(resourcesProvider: ResourcesProvider):
 
     def close_window():
         winEnterWindow.destroy()
@@ -41,13 +42,13 @@ def runSaveDeal():
                 }
             }
 
-            filePointer = open('numbers.json', 'r', encoding='utf-8')
+            filePointer = open(resourcesProvider.getDealsPath(), 'r', encoding='utf-8')
 
             existingDeals = json.load(filePointer)
             filePointer.close()
 
             existingDeals[number.get()] = newDeal
-            filePointer = open('numbers.json', 'w', encoding='utf-8')
+            filePointer = open(resourcesProvider.getDealsPath(), 'w', encoding='utf-8')
             filePointer.write(str(json.dumps(existingDeals, ensure_ascii=False, sort_keys=True, indent=4)))
             filePointer.close()
 
@@ -63,7 +64,7 @@ def runSaveDeal():
     w = w // 2
     h = h // 2
     w = w - 255
-    h = h - 255
+    h = h - 300
     winEnterWindow.geometry('510x510+{}+{}'.format(w, h))
     winEnterWindow.configure(bg ='#bdf0d4')
 
@@ -93,7 +94,7 @@ def runSaveDeal():
 
     Label(text='дата возбуждения', bg ='#bdf0d4').place(x=10, y=40, height = 20)
     Entry(textvariable=datevozb).place(x=120, y=40, width=30, height = 20)
-    with open('dap.json', 'r', encoding='utf-8') as f:
+    with open(resourcesProvider.getConfigPath(), 'r', encoding='utf-8') as f:
         dapJson = json.load(f)
     listOfMonths = []
     for l in dapJson['months'].keys():
