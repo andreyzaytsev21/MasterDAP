@@ -43,10 +43,8 @@ def runSaveDeal(resourcesProvider: ResourcesProvider):
             }
 
             filePointer = open(resourcesProvider.getDealsPath(), 'r', encoding='utf-8')
-
             existingDeals = json.load(filePointer)
             filePointer.close()
-
             existingDeals[number.get()] = newDeal
             filePointer = open(resourcesProvider.getDealsPath(), 'w', encoding='utf-8')
             filePointer.write(str(json.dumps(existingDeals, ensure_ascii=False, sort_keys=True, indent=4)))
@@ -86,7 +84,7 @@ def runSaveDeal(resourcesProvider: ResourcesProvider):
     zpName_ip = StringVar()
     emailul = StringVar()
     dt = StringVar()
-    #tpdecl = IntVar()
+    tpdecl = IntVar()
 
     Label(text='10418000-', bg ='#bdf0d4').place(x=10, y=10, height = 20)
     Entry(textvariable=number).place(x=70, y=10, width=50, height = 20)
@@ -96,6 +94,7 @@ def runSaveDeal(resourcesProvider: ResourcesProvider):
     Entry(textvariable=datevozb).place(x=120, y=40, width=30, height = 20)
     with open(resourcesProvider.getConfigPath(), 'r', encoding='utf-8') as f:
         dapJson = json.load(f)
+
     listOfMonths = []
     for l in dapJson['months'].keys():
         listOfMonths.append(l)
@@ -133,6 +132,7 @@ def runSaveDeal(resourcesProvider: ResourcesProvider):
     Entry(textvariable=ulitsadom).place(x=255, y=280, width=245, height = 20)
 
     Label(text='законный представитель', bg ='#bdf0d4').place(x=10, y=310, height = 20)
+
     listOfPositions = []
     for k in dapJson['actionerPositions'].keys():
         listOfPositions.append(k)
@@ -149,10 +149,10 @@ def runSaveDeal(resourcesProvider: ResourcesProvider):
     Label(text='№ ДТ', bg ='#bdf0d4').place(x=10, y=400, height = 20)
     Entry(textvariable=dt).place(x=50, y=400, width=200, height = 20)
 
-    #Radiobutton(text="таможенный представитель", value=1, variable=tpdecl, bg ='#bdf0d4', activebackground = '#bdf0d4').place(x = 10, y = 430, height = 20)
-    #Radiobutton(text="декларант", value=2, variable=tpdecl, bg ='#bdf0d4', activebackground = '#bdf0d4').place(x = 200, y = 430, height = 20)
+    Radiobutton(text="таможенный представитель", value=1, variable=tpdecl, bg ='#bdf0d4', activebackground = '#bdf0d4').place(x = 10, y = 430, height = 20)
+    Radiobutton(text="декларант", value=2, variable=tpdecl, bg ='#bdf0d4', activebackground = '#bdf0d4').place(x = 200, y = 430, height = 20)
 
-    saveButtonEnterWindow = Button(text="Сохранить", command=show_message).place(relx=.5, rely=.95, anchor="c")
-    cancelButtonEnterWindow = Button(text="Отмена", command=close_window).place(relx=.97, rely=.95, anchor="e")
+    Button(text="Сохранить", command=show_message).place(relx=.5, rely=.95, anchor="c")
+    Button(text="Отмена", command=close_window).place(relx=.97, rely=.95, anchor="e")
 
     winEnterWindow.mainloop()

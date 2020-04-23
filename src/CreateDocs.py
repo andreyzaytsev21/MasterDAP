@@ -1,13 +1,27 @@
 from tkinter import *
 from tkinter import messagebox
 from tkinter import ttk
+from docxtpl import DocxTemplate
 import json
 from ResourcesProvider import ResourcesProvider
 
 def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str):
 
-    def show_message():
-        messagebox.showinfo("Сформировано")
+    def formDocs():
+        if box_01.get():
+            doc = DocxTemplate("../templates/01.docx")
+            context = {'number': number}
+            doc.render(context)
+            doc.save("../buffer/" + number + "__ 2.1 РЕШЕНИЕ о передаче дела для проведения АР.docx")
+
+        if box_11.get():
+            print('1')
+            doc = DocxTemplate("../templates/11.docx")
+            context = {'number': number}
+            doc.render(context)
+            doc.save("../buffer/" + number + "__ 3.2 Cправка об издержках.docx")
+
+        messagebox.showinfo("Сформировано по делу об АП\n\n10418000-" + number + "/2020")
 
     def close_window():
         winChooseDocs.destroy()
@@ -22,26 +36,26 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str):
     h = h - 345
     winChooseDocs.geometry('540x620+{}+{}'.format(w, h))
 
-    box_01 = IntVar()
-    box_02 = IntVar()
-    box_03 = IntVar()
-    box_04 = IntVar()
-    box_05 = IntVar()
-    box_06 = IntVar()
-    box_07 = IntVar()
-    box_08 = IntVar()
-    box_09 = IntVar()
-    box_10 = IntVar()
-    box_11 = IntVar()
-    box_12 = IntVar()
-    box_13 = IntVar()
-    box_14 = IntVar()
-    box_15 = IntVar()
-    box_16 = IntVar()
-    box_17 = IntVar()
-    box_18 = IntVar()
-    box_19 = IntVar()
-    box_20 = IntVar()
+    box_01 = BooleanVar()
+    box_02 = BooleanVar()
+    box_03 = BooleanVar()
+    box_04 = BooleanVar()
+    box_05 = BooleanVar()
+    box_06 = BooleanVar()
+    box_07 = BooleanVar()
+    box_08 = BooleanVar()
+    box_09 = BooleanVar()
+    box_10 = BooleanVar()
+    box_11 = BooleanVar()
+    box_12 = BooleanVar()
+    box_13 = BooleanVar()
+    box_14 = BooleanVar()
+    box_15 = BooleanVar()
+    box_16 = BooleanVar()
+    box_17 = BooleanVar()
+    box_18 = BooleanVar()
+    box_19 = BooleanVar()
+
     znt1 = StringVar()
     znt2 = StringVar()
     znt3 = StringVar()
@@ -59,8 +73,8 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str):
     daterassm2 = StringVar()
     monthrassm2 = StringVar()
 
-    doc01 = Checkbutton(text="Решение о передаче ДАП", variable=box_01).place(x=10, y=10, height = 20)
-    doc02 = Checkbutton(text="Определение о принятии дела к своему производству", variable=box_02).place(x=200, y=10, height = 20)
+    Checkbutton(text="Решение о передаче ДАП", variable=box_01).place(x=10, y=10, height = 20)
+    Checkbutton(text="Определение о принятии дела к своему производству", variable=box_02).place(x=200, y=10, height = 20)
 
     with open(resourcesProvider.getConfigPath(), 'r', encoding='utf-8') as f:
         dapJson = json.load(f)
@@ -83,8 +97,8 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str):
     Label(text='2020 года').place(x=465, y=35, height = 20)
     Label(text='______________________________________________________________________________________________________').place(x=10, y=55, height = 20)
 
-    doc03 = Checkbutton(text="Определение об истребовании документов и сведений", variable=box_03).place(x=10, y=80, height = 20)
-    doc04 = Checkbutton(text="Повестка о явке", variable=box_04).place(x=410, y=80, height = 20)
+    Checkbutton(text="Определение об истребовании документов и сведений", variable=box_03).place(x=10, y=80, height = 20)
+    Checkbutton(text="Повестка о явке", variable=box_04).place(x=410, y=80, height = 20)
 
     Label(text='дата направления').place(x=220, y=105, height = 20)
     Entry(textvariable=datepovestka).place(x=340, y=105, width=30, height = 20)
@@ -95,8 +109,8 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str):
     Label(text='2020 года').place(x=465, y=105, height = 20)
     Label(text='______________________________________________________________________________________________________').place(x=10, y=125, height = 20)
 
-    doc05 = Checkbutton(text="Запрос в ГИБДД", variable=box_08).place(x=10, y=150, height = 20)
-    doc06 = Checkbutton(text="Запрос в Росреестр с приложением", variable=box_09).place(x=300, y=150, height = 20)
+    Checkbutton(text="Запрос в ГИБДД", variable=box_05).place(x=10, y=150, height = 20)
+    Checkbutton(text="Запрос в Росреестр с приложением", variable=box_06).place(x=300, y=150, height = 20)
 
     znt2_ = ttk.Combobox(winChooseDocs, textvariable=znt2, values = listOfPer, height = 2)
     znt2_['state']='readonly'
@@ -111,9 +125,9 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str):
     Label(text='2020 года').place(x=465, y=175, height = 20)
     Label(text='______________________________________________________________________________________________________').place(x=10, y=195, height = 20)
 
-    doc07 = Checkbutton(text="Шаблон ТЛГ вызов на протокол", variable=box_05).place(x=10, y=220, height = 20)
-    doc08 = Checkbutton(text="Шаблон ответа ЮЛ на вызов на протокол", variable=box_06).place(x=270, y=220, height = 20)
-    doc09 = Checkbutton(text="Шаблон протокола об АП", variable=box_07).place(x=10, y=240, height = 20)
+    Checkbutton(text="Шаблон ТЛГ вызов на протокол", variable=box_07).place(x=10, y=220, height = 20)
+    Checkbutton(text="Шаблон ответа ЮЛ на вызов на протокол", variable=box_08).place(x=270, y=220, height = 20)
+    Checkbutton(text="Шаблон протокола об АП", variable=box_09).place(x=10, y=240, height = 20)
 
     Label(text='дата протокола об АП').place(x=200, y=265, height = 20)
     Entry(textvariable=dateprotokol).place(x=340, y=265, width=30, height = 20)
@@ -124,11 +138,11 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str):
     Label(text='2020 года').place(x=465, y=265, height = 20)
     Label(text='______________________________________________________________________________________________________').place(x=10, y=285, height = 20)
 
-    doc10 = Checkbutton(text="Рапорт об окончании адм.расследования", variable=box_10).place(x=10, y=310, height = 20)
-    doc11 = Checkbutton(text="Справка об отсутствии издержек", variable=box_11).place(x=320, y=310, height = 20)
-    doc12 = Checkbutton(text="Определение о назначении времени и места рассмотрения ДАП", variable=box_12).place(x=10, y=330, height = 20)
-    doc13 = Checkbutton(text="Шаблон ТЛГ вызов на рассмотрение", variable=box_15).place(x=10, y=350, height = 20)
-    doc14 = Checkbutton(text="Шаблон ответа ЮЛ на вызов на рассмотрение", variable=box_16).place(x=245, y=350, height = 20)
+    Checkbutton(text="Рапорт об окончании адм.расследования", variable=box_10).place(x=10, y=310, height = 20)
+    Checkbutton(text="Справка об отсутствии издержек", variable=box_11).place(x=320, y=310, height = 20)
+    Checkbutton(text="Определение о назначении времени и места рассмотрения ДАП", variable=box_12).place(x=10, y=330, height = 20)
+    Checkbutton(text="Шаблон ТЛГ вызов на рассмотрение", variable=box_13).place(x=10, y=350, height = 20)
+    Checkbutton(text="Шаблон ответа ЮЛ на вызов на рассмотрение", variable=box_14).place(x=245, y=350, height = 20)
 
     znt3_ = ttk.Combobox(winChooseDocs, textvariable=znt3, values = listOfPer, height = 2)
     znt3_['state']='readonly'
@@ -143,10 +157,10 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str):
     Label(text='2020 года').place(x=465, y=375, height = 20)
     Label(text='______________________________________________________________________________________________________').place(x=10, y=395, height = 20)
 
-    doc15 = Checkbutton(text="Определение об отложении времени и места рассмотрения ДАП", variable=box_13).place(x=30, y=420, height = 20)
-    doc16 = Checkbutton(text="Определение о продлении срока рассмотрения ДАП", variable=box_14).place(x=30, y=440, height = 20)
-    doc17 = Checkbutton(text="Шаблон постановления по ДАП", variable=box_17).place(x=10, y=460, height = 20)
-    doc18 = Checkbutton(text="Представление об устранении причин и условий", variable=box_18).place(x=10, y=480, height = 20)
+    Checkbutton(text="Определение об отложении времени и места рассмотрения ДАП", variable=box_15).place(x=30, y=420, height = 20)
+    Checkbutton(text="Определение о продлении срока рассмотрения ДАП", variable=box_16).place(x=30, y=440, height = 20)
+    Checkbutton(text="Шаблон постановления по ДАП", variable=box_17).place(x=10, y=460, height = 20)
+    Checkbutton(text="Представление об устранении причин и условий", variable=box_18).place(x=10, y=480, height = 20)
 
     znt4_ = ttk.Combobox(winChooseDocs, textvariable=znt4, values = listOfPer, height = 2)
     znt4_['state']='readonly'
@@ -161,9 +175,53 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str):
     Label(text='2020 года').place(x=465, y= 505, height = 20)
     Label(text='______________________________________________________________________________________________________').place(x=10, y=525, height = 20)
 
-    doc19 = Checkbutton(text="Бирка ДАП", variable=box_19).place(x=10, y=550, height = 20)
+    Checkbutton(text="Бирка ДАП", variable=box_19).place(x=10, y=550, height = 20)
+
+    Button(text="Сформировать", command=formDocs).place(relx=.5, rely=.95, anchor="c")
+    Button(text="Отмена", command=close_window).place(relx=.97, rely=.95, anchor="e")
+
+    number = chosenDeal
+    '''[number]['company']['address']['ad_index']
+    [number]['chkoap']
+    [number]['datevozb']
+    [number]['monthvozb']
+    [number]['company']['dateul']
+    [number]['company']['emailul']
+    ['company']['actioner']['position']
+    ['company']['actioner']['name']
+    ['dd1']
+    ['dd2']
+    ['dd4']
+    ['dd5']
+    ['fio1_1']
+    ['fio1']
+    ['fio2']
+    ['fio2']
+    ['fio3_1']
+    ['fio3']
+    ['fio3']
+    ['fio3']
+    [number]['company']['inn']
+    [number]['company']['kpp']
+    ['month1']
+    ['month2']
+    ['month4']
+    ['month5']
+    [number]['company']['address']['naspunkt']
+    ['number']
+    [number]['company']['ogrn']
+    [number]['stkoap']
+    [number]['company']['address']['subrf']
+    [number]['company']['ul']
+    [number]['company']['address']['ulitsadom']
+    ['znt1']
+    ['znt2']
+    ['znt3_1']
+    ['znt3']
+    ['doloar']
+    ['doloar_vp']
+    ['fiooar']
+    ['fiooar_vp']'''
 
 
-    saveButtonChooseDocs = Button(text="Сформировать", command=show_message).place(relx=.5, rely=.95, anchor="c")
-    cancelButtonChooseDocs = Button(text="Отмена", command=close_window).place(relx=.97, rely=.95, anchor="e")
     winChooseDocs.mainloop()

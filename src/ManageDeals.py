@@ -45,6 +45,7 @@ def runManageDeals(resourcesProvider: ResourcesProvider, employee: str):
                 buttonEdit.setIcon(iconEdit)
                 win.setCellWidget(i, 1, buttonEdit)
                 buttonDelete = Qt.QPushButton()
+                #buttonDelete.pressed.connect(lambda chosenDeal=key: self.goToDeleteDeal(chosenDeal))
                 buttonDelete.setIcon(iconDelete)
                 win.setCellWidget(i, 2, buttonDelete)
 
@@ -55,17 +56,22 @@ def runManageDeals(resourcesProvider: ResourcesProvider, employee: str):
             win.show()
 
             layout.addWidget(win)
+
+
         def goToRunSaveDeal(self):
             runSaveDeal(resourcesProvider)
 
         def goToFormDocs(self, chosenDeal):
             runCreateDocs(resourcesProvider, chosenDeal)
 
-        def goToEditDeal(self):
+
+        #def goToEditDeal(self):
             #runEditDeal(resourcesProvider, chosenDeal)
 
-        def goToDeleteDeal(self):
+        #def goToDeleteDeal(self, chosenDeal):
+
             #runDeleteDeal(resourcesProvider, chosen Deal)
+
 
     #if __name__ == '__main__':
     app = Qt.QApplication([])
