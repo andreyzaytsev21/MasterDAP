@@ -94,7 +94,7 @@ def runManageDeals(resourcesProvider: ResourcesProvider, chosenEmployeeOar: str)
     palette = QPalette()
     palette.setColor(QPalette.Window, QColor('#bdf0d4'))
     workWin.setPalette(palette)
-    workWin.resize(800, 950)
+    workWin.resize(800, 600)
     workWin.show()
 
     app.exec()

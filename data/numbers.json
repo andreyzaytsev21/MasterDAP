@@ -1,62 +1,38 @@
 {
-    "021": {
+    "665": {
         "artCode": "16.3",
+        "codeRF_dp": "статье 16.3",
+        "codeRF_ip": "статья 16.3",
+        "codeRF_rp": "статьи 16.3",
+        "codeRF_sh": "ст. 16.3",
+        "codeRF_tp": "статьей 16.3",
+        "codeRF_vp": "статью 16.3",
         "company": {
             "actioner": {
-                "zpName_dp": "И.В. Падерину",
-                "zpName_ip": "И.В. Падерин",
-                "zpName_rp": "И.В. Падерина",
-                "zpName_tp": "И.В. Падериным",
-                "zpName_vp": "И.В. Падерина",
-                "zpPosition": "генеральный директор"
+                "zpName_dp": "",
+                "zpName_ip": "",
+                "zpName_rp": "",
+                "zpName_tp": "",
+                "zpName_vp": "",
+                "zpPosition": ""
             },
             "address": {
-                "ulCity": "г. Пидорск",
-                "ulIndex": "6030225",
-                "ulStreetOffice": "Ленина ул.",
-                "ulSubrf": "Ивановская обл."
+                "ulCity": "",
+                "ulIndex": "",
+                "ulStreetOffice": "",
+                "ulSubrf": ""
             },
-            "dateRegUl": "05.01.2006",
-            "emailUl": "pa",
-            "inn": "52140596",
-            "kpp": "52014501",
-            "ogrn": "1059632145",
-            "ul": "ООО «Фирма»"
+            "dateRegUl": "",
+            "emailUl": "",
+            "inn": "",
+            "kpp": "",
+            "ogrn": "",
+            "ul": "ывпавыава"
         },
-        "dateInit": "10",
-        "monthInit": "февраля",
-        "numberDt": "1",
+        "dateInit": "",
+        "monthInit": "",
+        "numberDt": "",
         "partCode": "-",
-        "tpdecl": 1
-    },
-    "789": {
-        "artCode": "16.2",
-        "company": {
-            "actioner": {
-                "zpName_dp": "А.П. Зайцеву",
-                "zpName_ip": "А.П. Зайцев",
-                "zpName_rp": "А.П. Зайцева",
-                "zpName_tp": "А.П. Зайцевым",
-                "zpName_vp": "А.П. Зайцева",
-                "zpPosition": "генеральный директор"
-            },
-            "address": {
-                "ulCity": "Нижний",
-                "ulIndex": "603053",
-                "ulStreetOffice": "Бусыгина",
-                "ulSubrf": "Нижегород"
-            },
-            "dateRegUl": "20.05.2000",
-            "emailUl": "у",
-            "inn": "52014589",
-            "kpp": "52014701",
-            "ogrn": "1052459612",
-            "ul": "ООО «Компания»"
-        },
-        "dateInit": "24",
-        "monthInit": "апреля",
-        "numberDt": "у",
-        "partCode": "2",
-        "tpdecl": 1
+        "tpdecl": 0
     }
 }

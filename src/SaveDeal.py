@@ -13,6 +13,20 @@ def runSaveDeal(resourcesProvider: ResourcesProvider):
         if numberCase.get() == '' or ul.get() == '':
             messagebox.showerror("Ошибка", "Заполните все поля")
         else:
+            if partCode.get() == '' or partCode.get() == '-':
+                codeRF_ip = "статья " + artCode.get()
+                codeRF_rp = "статьи " + artCode.get()
+                codeRF_dp = "статье " + artCode.get()
+                codeRF_vp = "статью " + artCode.get()
+                codeRF_tp = "статьей " + artCode.get()
+                codeRF_sh = "ст. " + artCode.get()
+            else:
+                codeRF_ip = "часть " + partCode.get() + "статьи " + artCode.get()
+                codeRF_rp = "части " + partCode.get() + "статьи " + artCode.get()
+                codeRF_dp = "части " + partCode.get() + "статьи " + artCode.get()
+                codeRF_vp = "часть " + partCode.get() + "статьи " + artCode.get()
+                codeRF_tp = "частью " + partCode.get() + "статьи " + artCode.get()
+                codeRF_sh = "ч. " + partCode.get() + "ст. " + artCode.get()
             letters2 = zpName_ip.get()[len(zpName_ip.get())-2:]
             letters3 = zpName_ip.get()[len(zpName_ip.get())-3:]
             if letters3 == "ева" or letters3 == "ёва" or letters3 == "ина" or letters3 == "ына" or letters3 == "ова":
@@ -50,6 +64,12 @@ def runSaveDeal(resourcesProvider: ResourcesProvider):
             newDeal = {
                 "partCode" : partCode.get(),
                 "artCode" : artCode.get(),
+                "codeRF_ip" : codeRF_ip,
+                "codeRF_rp" : codeRF_rp,
+                "codeRF_dp" : codeRF_dp,
+                "codeRF_vp" : codeRF_vp,
+                "codeRF_tp" : codeRF_tp,
+                "codeRF_sh" : codeRF_sh,
                 "dateInit" : dateInit.get(),
                 "monthInit" : monthInit.get(),
                 "numberDt" : numberDt.get(),

@@ -9,7 +9,6 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
     print(chosenEmployeeOar)
 
     def formDocs():
-        print(zpPosition_ip)
         if box_01.get() == False and box_02.get() == False and box_03.get() == False and box_04.get() == False and \
                         box_05.get() == False and box_06.get() == False and box_07.get() == False and box_08.get() == False and \
                         box_09.get() == False and box_10.get() == False and box_11.get() == False and box_12.get() == False and \
@@ -17,7 +16,6 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
                         box_17.get() == False and box_18.get() == False and box_19.get() == False:
             messagebox.showerror("Ошибка", "Выберите документы")
         else:
-
             context = {"artCode" : artCode, "dateInit" : dateInit, "dateRegUl" : dateRegUl, "emailUl" : emailUl,
                        "inn" : inn, "kpp" : kpp, "monthInit" : monthInit, "numberCase": numberCase, "numberDt" : numberDt,
                        "ogrn" : ogrn, "partCode" : partCode, "tpdecl" : tpdecl, "ul" : ul, "ulCity": ulCity,
@@ -42,8 +40,12 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
                 doc.render(context)
                 doc.save("../buffer/" + numberCase + "__ 2.1 РЕШЕНИЕ о передаче дела для проведения АР.docx")
 
+            if box_02.get():
+                doc = DocxTemplate("../templates/02.docx")
+                doc.render(context)
+                doc.save("../buffer/" + numberCase + "__ 2.2 ОПРЕДЕЛЕНИЕ о принятии дела к своему проиводству.docx")
+
             if box_11.get():
-                print('1')
                 doc = DocxTemplate("../templates/11.docx")
                 doc.render(context)
                 doc.save("../buffer/" + numberCase + "__ 3.2 Cправка об издержках.docx")
