@@ -7,7 +7,9 @@ from ResourcesProvider import ResourcesProvider
 
 def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenEmployeeOar: str):
     print(chosenEmployeeOar)
+
     def formDocs():
+        print(zpPosition_ip)
         if box_01.get() == False and box_02.get() == False and box_03.get() == False and box_04.get() == False and \
                         box_05.get() == False and box_06.get() == False and box_07.get() == False and box_08.get() == False and \
                         box_09.get() == False and box_10.get() == False and box_11.get() == False and box_12.get() == False and \
@@ -17,15 +19,23 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
         else:
 
             context = {"artCode" : artCode, "dateInit" : dateInit, "dateRegUl" : dateRegUl, "emailUl" : emailUl,
-                       "inn" : inn, "kpp" : kpp, "monthInit" : monthInit, "number": numberCase, "numberDt" : numberDt,
+                       "inn" : inn, "kpp" : kpp, "monthInit" : monthInit, "numberCase": numberCase, "numberDt" : numberDt,
                        "ogrn" : ogrn, "partCode" : partCode, "tpdecl" : tpdecl, "ul" : ul, "ulCity": ulCity,
                        "ulIndex" : ulIndex, "ulStreetOffice": ulStreetOffice, "ulSubrf": ulSubrf, "zpName_dp" : zpName_dp,
                        "zpName_ip" : zpName_ip, "zpName_rp" : zpName_rp, "zpName_tp" : zpName_tp, "zpName_vp" : zpName_vp,
-                       "zpPosition" : zpPosition, "fiooar_ip" : fiooar_ip, "fiooar_rp" : fiooar_rp, "fiooar_dp" : fiooar_dp,
-                       "fiooar_vp" : fiooar_vp, "fiooar_tp" : fiooar_tp, "doloar_ip" : doloar_ip, "doloar_rp" : doloar_rp,
-                       "doloar_dp" : doloar_dp, "doloar_vp" : doloar_vp, "doloar_tp" : doloar_tp, "doloar_ip_sh" : doloar_ip_sh,
+                       "zpPosition" : zpPosition, "zpPosition_ip" : zpPosition_ip, "zpPosition_rp" : zpPosition_rp,
+                       "zpPosition_dp" : zpPosition_dp, "zpPosition_vp" : zpPosition_vp, "zpPosition_tp" : zpPosition_tp,
+                       "zpPosition_ip_low" : zpPosition_ip_low, "zpPosition_rp_low" : zpPosition_rp_low,
+                       "zpPosition_dp_low" : zpPosition_dp_low, "zpPosition_vp_low" : zpPosition_vp_low,
+                       "zpPosition_tp_low" : zpPosition_tp_low, "fiooar_ip" : fiooar_ip, "fiooar_rp" : fiooar_rp,
+                       "fiooar_dp" : fiooar_dp, "fiooar_vp" : fiooar_vp, "fiooar_tp" : fiooar_tp, "doloar_ip" : doloar_ip,
+                       "doloar_rp" : doloar_rp, "doloar_dp" : doloar_dp, "doloar_vp" : doloar_vp, "doloar_tp" : doloar_tp,
+                       "doloar_ip_low" : doloar_ip_low, "doloar_rp_low" : doloar_rp_low, "doloar_dp_low" : doloar_dp_low,
+                       "doloar_vp_low" : doloar_vp_low, "doloar_tp_low" : doloar_tp_low, "doloar_ip_sh" : doloar_ip_sh,
                        "doloar_rp_sh" : doloar_rp_sh, "doloar_dp_sh" : doloar_dp_sh, "doloar_vp_sh" : doloar_vp_sh,
-                       "doloar_tp_sh" : doloar_tp_sh, "emailOar" : emailOar, "gortel" : gortel}
+                       "doloar_tp_sh" : doloar_tp_sh, "doloar_ip_sh_low" : doloar_ip_sh_low, "doloar_rp_sh_low" : doloar_rp_sh_low,
+                       "doloar_dp_sh_low" : doloar_dp_sh_low, "doloar_vp_sh_low" : doloar_vp_sh_low,
+                       "doloar_tp_sh_low" : doloar_tp_sh_low, "emailOar" : emailOar, "gortel" : gortel}
 
             if box_01.get():
                 doc = DocxTemplate("../templates/01.docx")
@@ -175,6 +185,16 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
     zpName_tp = numbersJson[numberCase]['company']['actioner']['zpName_tp']
     zpName_vp = numbersJson[numberCase]['company']['actioner']['zpName_vp']
     zpPosition = numbersJson[numberCase]['company']['actioner']['zpPosition']
+    zpPosition_ip = dapJson['actionerPositions'][zpPosition]['ip']
+    zpPosition_rp = dapJson['actionerPositions'][zpPosition]['rp']
+    zpPosition_dp = dapJson['actionerPositions'][zpPosition]['dp']
+    zpPosition_vp = dapJson['actionerPositions'][zpPosition]['vp']
+    zpPosition_tp = dapJson['actionerPositions'][zpPosition]['tp']
+    zpPosition_ip_low = dapJson['actionerPositions'][zpPosition]['ip_low']
+    zpPosition_rp_low = dapJson['actionerPositions'][zpPosition]['rp_low']
+    zpPosition_dp_low = dapJson['actionerPositions'][zpPosition]['dp_low']
+    zpPosition_vp_low = dapJson['actionerPositions'][zpPosition]['vp_low']
+    zpPosition_tp_low = dapJson['actionerPositions'][zpPosition]['tp_low']
 
     employeeOar = chosenEmployeeOar
 
@@ -188,11 +208,21 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
     doloar_dp = dapJson['employeesOar'][employeeOar]['doloar_dp']
     doloar_vp = dapJson['employeesOar'][employeeOar]['doloar_vp']
     doloar_tp = dapJson['employeesOar'][employeeOar]['doloar_tp']
+    doloar_ip_low = dapJson['employeesOar'][employeeOar]['doloar_ip_low']
+    doloar_rp_low = dapJson['employeesOar'][employeeOar]['doloar_rp_low']
+    doloar_dp_low = dapJson['employeesOar'][employeeOar]['doloar_dp_low']
+    doloar_vp_low = dapJson['employeesOar'][employeeOar]['doloar_vp_low']
+    doloar_tp_low = dapJson['employeesOar'][employeeOar]['doloar_tp_low']
     doloar_ip_sh = dapJson['employeesOar'][employeeOar]['doloar_ip_sh']
     doloar_rp_sh = dapJson['employeesOar'][employeeOar]['doloar_rp_sh']
     doloar_dp_sh = dapJson['employeesOar'][employeeOar]['doloar_dp_sh']
     doloar_vp_sh = dapJson['employeesOar'][employeeOar]['doloar_vp_sh']
     doloar_tp_sh = dapJson['employeesOar'][employeeOar]['doloar_tp_sh']
+    doloar_ip_sh_low = dapJson['employeesOar'][employeeOar]['doloar_ip_sh_low']
+    doloar_rp_sh_low = dapJson['employeesOar'][employeeOar]['doloar_rp_sh_low']
+    doloar_dp_sh_low = dapJson['employeesOar'][employeeOar]['doloar_dp_sh_low']
+    doloar_vp_sh_low = dapJson['employeesOar'][employeeOar]['doloar_vp_sh_low']
+    doloar_tp_sh_low = dapJson['employeesOar'][employeeOar]['doloar_tp_sh_low']
     emailOar = dapJson['employeesOar'][employeeOar]['emailOar']
     gortel = dapJson['employeesOar'][employeeOar]['gortel']
 

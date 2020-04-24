@@ -46,6 +46,7 @@ def runSaveDeal(resourcesProvider: ResourcesProvider):
                     zpName_dp = zpName_ip.get()
                     zpName_vp = zpName_ip.get()
                     zpName_tp = zpName_ip.get()
+
             newDeal = {
                 "partCode" : partCode.get(),
                 "artCode" : artCode.get(),
