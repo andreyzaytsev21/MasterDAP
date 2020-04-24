@@ -1,142 +1,62 @@
 {
     "021": {
-        "chkoap": "3",
+        "artCode": "16.3",
         "company": {
             "actioner": {
-                "name": {
-                    "DAT": "А.П. Зайцеву",
-                    "IMEN": "А.П. Зайцев",
-                    "ROD": "А.П. Зайцева"
-                },
-                "position": "директор"
+                "zpName_dp": "И.В. Падерину",
+                "zpName_ip": "И.В. Падерин",
+                "zpName_rp": "И.В. Падерина",
+                "zpName_tp": "И.В. Падериным",
+                "zpName_vp": "И.В. Падерина",
+                "zpPosition": "генеральный директор"
             },
             "address": {
-                "ad_index": "603053",
-                "naspunkt": "г. Нижний Новгород",
-                "subrf": "Нижегородская обл.",
-                "ulitsadom": "Бусыгина пр., д. 36, кв. 111"
+                "ulCity": "г. Пидорск",
+                "ulIndex": "6030225",
+                "ulStreetOffice": "Ленина ул.",
+                "ulSubrf": "Ивановская обл."
             },
-            "dateul": "24.01.2005",
-            "emailul": "zap-92@mail.ru",
-            "inn": "52457836",
-            "kpp": "52012401",
-            "ogrn": "1045789614",
-            "ul": "ООО «Пошел нахер»"
+            "dateRegUl": "05.01.2006",
+            "emailUl": "pa",
+            "inn": "52140596",
+            "kpp": "52014501",
+            "ogrn": "1059632145",
+            "ul": "ООО «Фирма»"
         },
-        "datevozb": "24",
-        "monthvozb": "02",
-        "stkoap": "16.2"
+        "dateInit": "10",
+        "monthInit": "февраля",
+        "numberDt": "1",
+        "partCode": "-",
+        "tpdecl": 1
     },
-    "555": {
-        "chkoap": "1",
+    "789": {
+        "artCode": "16.2",
         "company": {
             "actioner": {
-                "name": {
-                    "DAT": "1",
-                    "IMEN": "1",
-                    "ROD": "1"
-                },
-                "position": "1"
+                "zpName_dp": "А.П. Зайцеву",
+                "zpName_ip": "А.П. Зайцев",
+                "zpName_rp": "А.П. Зайцева",
+                "zpName_tp": "А.П. Зайцевым",
+                "zpName_vp": "А.П. Зайцева",
+                "zpPosition": "генеральный директор"
             },
             "address": {
-                "ad_index": "1",
-                "naspunkt": "1",
-                "subrf": "1",
-                "ulitsadom": "1"
+                "ulCity": "Нижний",
+                "ulIndex": "603053",
+                "ulStreetOffice": "Бусыгина",
+                "ulSubrf": "Нижегород"
             },
-            "dateul": "1",
-            "emailul": "1",
-            "inn": "1",
-            "kpp": "1",
-            "ogrn": "1",
-            "ul": "1"
+            "dateRegUl": "20.05.2000",
+            "emailUl": "у",
+            "inn": "52014589",
+            "kpp": "52014701",
+            "ogrn": "1052459612",
+            "ul": "ООО «Компания»"
         },
-        "datevozb": "1",
-        "monthvozb": "1",
-        "stkoap": "1"
-    },
-    "666": {
-        "chkoap": "1",
-        "company": {
-            "actioner": {
-                "name": {
-                    "DAT": "1",
-                    "IMEN": "11",
-                    "ROD": "1"
-                },
-                "position": "1"
-            },
-            "address": {
-                "ad_index": "1",
-                "naspunkt": "1",
-                "subrf": "1",
-                "ulitsadom": "1"
-            },
-            "dateul": "1",
-            "emailul": "1",
-            "inn": "1",
-            "kpp": "1",
-            "ogrn": "1",
-            "ul": "1"
-        },
-        "datevozb": "1",
-        "monthvozb": "1",
-        "stkoap": "1"
-    },
-    "888": {
-        "chkoap": "1",
-        "company": {
-            "actioner": {
-                "name": {
-                    "DAT": "1",
-                    "IMEN": "1",
-                    "ROD": "1"
-                },
-                "position": "1"
-            },
-            "address": {
-                "ad_index": "1",
-                "naspunkt": "1",
-                "subrf": "1",
-                "ulitsadom": "1"
-            },
-            "dateul": "1",
-            "emailul": "1",
-            "inn": "1",
-            "kpp": "1",
-            "ogrn": "1",
-            "ul": "1"
-        },
-        "datevozb": "1",
-        "monthvozb": "1",
-        "stkoap": "1"
-    },
-    "999": {
-        "chkoap": "1",
-        "company": {
-            "actioner": {
-                "name": {
-                    "DAT": "1",
-                    "IMEN": "1",
-                    "ROD": "1"
-                },
-                "position": "1"
-            },
-            "address": {
-                "ad_index": "1",
-                "naspunkt": "1",
-                "subrf": "1",
-                "ulitsadom": "1"
-            },
-            "dateul": "1",
-            "emailul": "1",
-            "inn": "1",
-            "kpp": "1",
-            "ogrn": "1",
-            "ul": "gftdyhtrfuytruytuytu"
-        },
-        "datevozb": "1",
-        "monthvozb": "1",
-        "stkoap": "1"
+        "dateInit": "24",
+        "monthInit": "апреля",
+        "numberDt": "у",
+        "partCode": "2",
+        "tpdecl": 1
     }
 }

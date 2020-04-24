@@ -7,12 +7,12 @@ from ResourcesProvider import ResourcesProvider
 
 def runEmployeeSelection(resourcesProvider: ResourcesProvider):
     def buttonClickCallback():
-        employee = selectedEmployee.get()
-        if employee == '':
+        chosenEmployeeOar = selectedEmployeeOar.get()
+        if chosenEmployeeOar == '':
             messagebox.showerror("Ошибка", "Пользователь не выбран")
         else:
             tk.destroy()
-            runManageDeals(resourcesProvider, employee)
+            runManageDeals(resourcesProvider, chosenEmployeeOar)
     tk = Tk()
     tk.title("МастерДАП")
     w = tk.winfo_screenwidth()
@@ -27,17 +27,18 @@ def runEmployeeSelection(resourcesProvider: ResourcesProvider):
     label.pack()
     btn = Button(tk, text="Далее", height=2, width=20, command=buttonClickCallback)
     btn.pack(side=BOTTOM)
-    selectedEmployee = StringVar()
+
+    selectedEmployeeOar = StringVar()
 
     with open(resourcesProvider.getConfigPath(), 'r', encoding='utf-8') as f:
         dapJson = json.load(f)
     listOfEmployee = []
-    for l in dapJson['executors'].keys():
+    for l in dapJson['employeesOar'].keys():
         listOfEmployee.append(l)
 
-    combobox = ttk.Combobox(tk, textvariable=selectedEmployee, values= listOfEmployee, height = len(listOfEmployee))
+    combobox = ttk.Combobox(tk, textvariable=selectedEmployeeOar, values= listOfEmployee, height = len(listOfEmployee))
     combobox['state'] = 'readonly'
     combobox.pack()
 
     tk.mainloop()
-    return selectedEmployee.get()
+    return selectedEmployeeOar.get()

@@ -5,26 +5,35 @@ from SaveDeal import runSaveDeal
 from ResourcesProvider import ResourcesProvider
 from CreateDocs import runCreateDocs
 
-def runManageDeals(resourcesProvider: ResourcesProvider, employee: str):
+def runManageDeals(resourcesProvider: ResourcesProvider, chosenEmployeeOar: str):
     class Widget(Qt.QWidget):
+
 
         def __init__(self):
             super().__init__()
-            layout = Qt.QVBoxLayout(self)
+            layoutVertical = Qt.QVBoxLayout(self)
             iconCreate = Qt.QIcon("../icons/create.png")
+            iconForm = Qt.QIcon("../icons/form.png")
             iconEdit = Qt.QIcon("../icons/edit.png")
             iconDelete = Qt.QIcon("../icons/delete.png")
+            iconMode = Qt.QIcon("../icons/mode.png")
 
-            toolbutton = Qt.QPushButton("Создать ДАП")
-            toolbutton.setFixedWidth(110)
-            toolbutton.setFixedHeight(30)
-            toolbutton.setIcon(iconCreate)
-            toolbutton.clicked.connect(self.goToRunSaveDeal)
-            layout.addWidget(toolbutton)
+            createCaseButton = Qt.QPushButton("Создать ДАП")
+            createCaseButton.setFixedWidth(110)
+            createCaseButton.setFixedHeight(30)
+            createCaseButton.setIcon(iconCreate)
+            createCaseButton.clicked.connect(self.goToRunSaveDeal)
+            modeButton = Qt.QPushButton()
+            modeButton.setFixedHeight(30)
+            modeButton.setFixedWidth(30)
+            modeButton.setIcon(iconMode)
+            #modeButton.pressed.connect(self.poverhMode)
+            layoutVertical.addWidget(createCaseButton)
+
 
             with open(resourcesProvider.getDealsPath(), 'r', encoding='utf-8') as f:
                 d = json.load(f)
-            labels = [""] + [""] + [""] + ["№ дела об АП"] + ["КоАП РФ"] + ["юридическое лицо"] + ["юридический адрес"]
+            labels = [""] + [""] + [""] + ["№ дела об АП"] + ["КоАП РФ"] + ["юридическое лицо"] + ["ИНН"] + ["юридический адрес"]
 
             win = Qt.QTableWidget(0, len(labels))
             win.setColumnHidden(10, False)
@@ -35,11 +44,12 @@ def runManageDeals(resourcesProvider: ResourcesProvider, employee: str):
 
             for i, (key, value) in enumerate(allItemsReversed):
                 rows = [""] + [""] + [""] + ["10418000-"+ key + "/2020"] + \
-                       [d[key]["stkoap"] + " ч." + d[key]["chkoap"]] + [d[key]["company"]["ul"]] + \
-                       [d[key]["company"]["address"]["naspunkt"] + ", " + d[key]["company"]["address"]["ulitsadom"]]
+                       [d[key]["artCode"] + " ч." + d[key]["partCode"]] + [d[key]["company"]["ul"]] + [d[key]["company"]["inn"]] +\
+                       [d[key]["company"]["address"]["ulIndex"] + ", " + d[key]["company"]["address"]["ulCity"] + ", " + d[key]["company"]["address"]["ulStreetOffice"]]
                 win.insertRow(win.rowCount())
-                buttonCreate = Qt.QPushButton("Сформировать")
-                buttonCreate.pressed.connect(lambda chosenDeal=key: self.goToFormDocs(chosenDeal))
+                buttonCreate = Qt.QPushButton()
+                buttonCreate.setIcon(iconForm)
+                buttonCreate.pressed.connect(lambda chosenDeal=key: self.goToFormDocs(chosenDeal, chosenEmployeeOar))
                 win.setCellWidget(i, 0, buttonCreate)
                 buttonEdit = Qt.QPushButton()
                 buttonEdit.setIcon(iconEdit)
@@ -55,14 +65,17 @@ def runManageDeals(resourcesProvider: ResourcesProvider, employee: str):
                     win.resizeColumnsToContents()
             win.show()
 
-            layout.addWidget(win)
+            layoutVertical.addWidget(win)
+            layoutVertical.addWidget(modeButton)
 
+        #def poverhMode(app):
+         #   workWin.wm_attributes('-topmost',1)
 
         def goToRunSaveDeal(self):
             runSaveDeal(resourcesProvider)
 
-        def goToFormDocs(self, chosenDeal):
-            runCreateDocs(resourcesProvider, chosenDeal)
+        def goToFormDocs(self, chosenDeal, chosenEmployeeOar):
+            runCreateDocs(resourcesProvider, chosenDeal, chosenEmployeeOar)
 
 
         #def goToEditDeal(self):
@@ -76,12 +89,12 @@ def runManageDeals(resourcesProvider: ResourcesProvider, employee: str):
     #if __name__ == '__main__':
     app = Qt.QApplication([])
     workWin = Widget()
-    workWin.setWindowTitle("МастерДАП / Приволжская электронная таможня - ОАР - " + employee)
+    workWin.setWindowTitle("МастерДАП / Приволжская электронная таможня - ОАР - " + chosenEmployeeOar)
 
     palette = QPalette()
     palette.setColor(QPalette.Window, QColor('#bdf0d4'))
     workWin.setPalette(palette)
-    workWin.resize(800, 400)
+    workWin.resize(800, 950)
     workWin.show()
 
     app.exec()

@@ -6,4 +6,4 @@ from ResourcesProvider import *
 resourcesProvider = ResourcesProvider("../data/")
 
 
-employee = runEmployeeSelection(resourcesProvider)
+chosenEmployeeOar = runEmployeeSelection(resourcesProvider)

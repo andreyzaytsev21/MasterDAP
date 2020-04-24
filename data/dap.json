@@ -27,7 +27,7 @@
 			"znt" : "И.о. заместителя"
 		}
 	},
-	"executors" : {
+	"employeesOar" : {
 		"М.В. Дубровина": {
 			"fiooar_ip" : "М.В. Дубровина",
 			"fiooar_rp" : "М.В. Дубровиной",
@@ -44,7 +44,7 @@
 			"doloar_dp_sh" : "Уполномоченному",
 			"doloar_vp_sh" : "Уполномоченного",
 			"doloar_tp_sh" : "Уполномоченным",
-			"email" : "DubrovinaMV",
+			"emailOar" : "DubrovinaMV",
 			"gortel" : ""
 		},
 		"Н.В. Задорожная": {
@@ -63,7 +63,7 @@
 			"doloar_dp_sh" : "Старшему уполномоченному",
 			"doloar_vp_sh" : "Старшего уполномоченного",
 			"doloar_tp_sh" : "Старшим уполномоченным",
-            "email" : "ZadorozhnayaNV",
+            "emailOar" : "ZadorozhnayaNV",
 			"gortel" : "65"
         },
 		"А.П. Зайцев" : {
@@ -82,7 +82,7 @@
 			"doloar_dp_sh": "Уполномоченному по ОВД",
 			"doloar_vp_sh": "Уполномоченного по ОВД",
 			"doloar_tp_sh": "Уполномоченным по ОВД",
-			"email": "ZaytsevAP",
+			"emailOar": "ZaytsevAP",
 			"gortel": "65"
 		},
         "А.Г. Левина": {
@@ -101,7 +101,7 @@
 			"doloar_dp_sh" : "Старшему уполномоченному",
 			"doloar_vp_sh" : "Старшего уполномоченного",
 			"doloar_tp_sh" : "Старшим уполномоченным",
-			"email" : "LevinaAG",
+			"emailOar" : "LevinaAG",
 			"gortel" : ""
 		},
         "О.А. Петрушева": {
@@ -120,7 +120,7 @@
 			"doloar_dp_sh" : "Старшему уполномоченному по ОВД",
 			"doloar_vp_sh" : "Старшего уполномоченного по ОВД",
 			"doloar_tp_sh" : "Старшим уполномоченным по ОВД",
-            "email" : "PetrushevaOA",
+            "emailOar" : "PetrushevaOA",
 			"gortel" : "59"
 		},
         "Е.Н. Сажина": {
@@ -139,7 +139,7 @@
 			"doloar_dp_sh" : "Уполномоченному",
 			"doloar_vp_sh" : "Уполномоченного",
 			"doloar_tp_sh" : "Уполномоченным",
-			"email" : "SazhinaEN",
+			"emailOar" : "SazhinaEN",
 			"gortel" : ""
         },
         "Э.В. Степанов": {
@@ -158,7 +158,7 @@
 			"doloar_dp_sh" : "Уполномоченному по ОВД",
 			"doloar_vp_sh" : "Уполномоченного по ОВД",
 			"doloar_tp_sh" : "Уполномоченным по ОВД",
-            "email" : "StepanovEV",
+            "emailOar" : "StepanovEV",
 			"gortel" : "59"
 		},
         "Е.В. Трунина": {
@@ -177,7 +177,7 @@
 			"doloar_dp_sh" : "Старшему уполномоченному",
 			"doloar_vp_sh" : "Старшего уполномоченного",
 			"doloar_tp_sh" : "Старшим уполномоченным",
-            "email" : "TruninaEV",
+            "emailOar" : "TruninaEV",
 			"gortel" : ""
 		},
         "А.С. Хлыбов": {
@@ -196,7 +196,7 @@
 			"doloar_dp_sh" : "Заместителю начальника",
 			"doloar_vp_sh" : "Заместителя начальника",
 			"doloar_tp_sh" : "Заместителем начальника",
-            "email" : "KhlybovAS",
+            "emailOar" : "KhlybovAS",
 			"gortel" : "58"
 		},
         "Е.В. Шумилина": {
@@ -215,7 +215,7 @@
 			"doloar_dp_sh" : "Уполномоченному",
 			"doloar_vp_sh" : "Уполномоченного",
 			"doloar_tp_sh" : "Уполномоченным",
-            "email" : "ShumilinaEV",
+            "emailOar" : "ShumilinaEV",
 			"gortel" : ""
 		},
         "А.В. Яльтиков": {
@@ -234,7 +234,7 @@
 			"doloar_dp_sh" : "Старшему уполномоченному по ОВД",
 			"doloar_vp_sh" : "Старшего уполномоченного по ОВД",
 			"doloar_tp_sh" : "Старшим уполномоченным по ОВД",
-            "email" : "YaltikovAV",
+            "emailOar" : "YaltikovAV",
 			"gortel" : ""
 		}
 	},
