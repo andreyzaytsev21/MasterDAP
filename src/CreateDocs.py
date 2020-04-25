@@ -8,7 +8,10 @@ from ResourcesProvider import ResourcesProvider
 def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenEmployeeOar: str):
     print(chosenEmployeeOar)
 
+
+
     def formDocs():
+        print(zpPosition)
         if box_01.get() == False and box_02.get() == False and box_03.get() == False and box_04.get() == False and \
                         box_05.get() == False and box_06.get() == False and box_07.get() == False and box_08.get() == False and \
                         box_09.get() == False and box_10.get() == False and box_11.get() == False and box_12.get() == False and \

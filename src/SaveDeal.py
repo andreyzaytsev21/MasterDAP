@@ -10,7 +10,10 @@ def runSaveDeal(resourcesProvider: ResourcesProvider):
         winEnterWindow.destroy()
 
     def show_message():
-        if numberCase.get() == '' or ul.get() == '':
+        if numberCase.get() == '' or dateInit.get() == '' or monthInit.get() == '' or partCode.get() == '' or artCode.get() == ''\
+            or ul.get() == '' or ogrn.get() == '' or inn.get() == '' or kpp.get() == '' or dateRegUl.get() == ''\
+            or ulIndex.get() == '' or ulSubrf.get() == '' or ulCity.get() == '' or ulStreetOffice.get() == '' or zpPosition.get() == ''\
+            or zpName_ip.get() == '' or emailUl.get() == '' or numberDt.get() == '' or tpdecl.get() == '':
             messagebox.showerror("Ошибка", "Заполните все поля")
         else:
             if partCode.get() == '' or partCode.get() == '-':
