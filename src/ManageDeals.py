@@ -44,8 +44,9 @@ def runManageDeals(resourcesProvider: ResourcesProvider, chosenEmployeeOar: str)
 
             for i, (key, value) in enumerate(allItemsReversed):
                 rows = [""] + [""] + [""] + ["10418000-"+ key + "/2020"] + \
-                       [d[key]["artCode"] + " ч." + d[key]["partCode"]] + [d[key]["company"]["ul"]] + [d[key]["company"]["inn"]] +\
-                       [d[key]["company"]["address"]["ulIndex"] + ", " + d[key]["company"]["address"]["ulCity"] + ", " + d[key]["company"]["address"]["ulStreetOffice"]]
+                       [d[key]["codeRF_sh"]] + [d[key]["company"]["ul"]] + [d[key]["company"]["inn"]] +\
+                       [d[key]["company"]["address"]["ulIndex"] + ", " + d[key]["company"]["address"]["ulCity"] + ", " +\
+                        d[key]["company"]["address"]["ulStreetOffice"]]
                 win.insertRow(win.rowCount())
                 buttonCreate = Qt.QPushButton()
                 buttonCreate.setIcon(iconForm)

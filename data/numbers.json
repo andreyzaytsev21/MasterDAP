@@ -1,37 +1,73 @@
 {
-    "665": {
-        "artCode": "16.3",
-        "codeRF_dp": "статье 16.3",
-        "codeRF_ip": "статья 16.3",
-        "codeRF_rp": "статьи 16.3",
-        "codeRF_sh": "ст. 16.3",
-        "codeRF_tp": "статьей 16.3",
-        "codeRF_vp": "статью 16.3",
+    "123": {
+        "artCode": "16.2",
+        "codeRF_dp": "части 2 статьи 16.2",
+        "codeRF_ip": "часть 2 статьи 16.2",
+        "codeRF_rp": "части 2 статьи 16.2",
+        "codeRF_sh": "ч. 2 ст. 16.2",
+        "codeRF_tp": "частью 2 статьи 16.2",
+        "codeRF_vp": "часть 2 статьи 16.2",
         "company": {
             "actioner": {
-                "zpName_dp": "",
-                "zpName_ip": "",
-                "zpName_rp": "",
-                "zpName_tp": "",
-                "zpName_vp": "",
+                "zpName_dp": "А.П. Зайцеву",
+                "zpName_ip": "А.П. Зайцев",
+                "zpName_rp": "А.П. Зайцева",
+                "zpName_tp": "А.П. Зайцевым",
+                "zpName_vp": "А.П. Зайцева",
                 "zpPosition": "генеральный директор"
             },
             "address": {
-                "ulCity": "",
-                "ulIndex": "",
-                "ulStreetOffice": "",
-                "ulSubrf": ""
+                "ulCity": "г. Нижний Новгород",
+                "ulIndex": "603053",
+                "ulStreetOffice": "Бусыгина пр., д. 36, кв. 111",
+                "ulSubrf": "Нижегородская обл."
             },
-            "dateRegUl": "",
-            "emailUl": "",
-            "inn": "",
-            "kpp": "",
-            "ogrn": "",
-            "ul": "ывпавыава"
+            "dateRegUl": "10.09.2010",
+            "emailUl": "zap@mail.ru",
+            "inn": "52145236",
+            "kpp": "52015201",
+            "ogrn": "1025485632",
+            "ul": "ООО «Компания»"
         },
-        "dateInit": "",
-        "monthInit": "",
-        "numberDt": "",
+        "dateInit": "24",
+        "monthInit": "апреля",
+        "numberDt": "10418010/050819/0256458",
+        "partCode": "2",
+        "tpdecl": 1
+    },
+    "777": {
+        "artCode": "16.7",
+        "codeRF_dp": "статье 16.7",
+        "codeRF_ip": "статья 16.7",
+        "codeRF_rp": "статьи 16.7",
+        "codeRF_sh": "ст. 16.7",
+        "codeRF_tp": "статьей 16.7",
+        "codeRF_vp": "статью 16.7",
+        "company": {
+            "actioner": {
+                "zpName_dp": "4684689",
+                "zpName_ip": "4684689",
+                "zpName_rp": "4684689",
+                "zpName_tp": "4684689",
+                "zpName_vp": "4684689",
+                "zpPosition": "директор"
+            },
+            "address": {
+                "ulCity": "68468468",
+                "ulIndex": "4684684",
+                "ulStreetOffice": "468468486",
+                "ulSubrf": "684684684"
+            },
+            "dateRegUl": "4684684",
+            "emailUl": "46846846",
+            "inn": "4684896486",
+            "kpp": "68486468",
+            "ogrn": "469849684",
+            "ul": "ООО"
+        },
+        "dateInit": "10",
+        "monthInit": "июня",
+        "numberDt": "68468468",
         "partCode": "-",
         "tpdecl": 0
     }

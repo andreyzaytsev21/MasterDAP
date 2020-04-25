@@ -11,7 +11,6 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
 
 
     def formDocs():
-        print(zpPosition)
         if box_01.get() == False and box_02.get() == False and box_03.get() == False and box_04.get() == False and \
                         box_05.get() == False and box_06.get() == False and box_07.get() == False and box_08.get() == False and \
                         box_09.get() == False and box_10.get() == False and box_11.get() == False and box_12.get() == False and \
@@ -19,6 +18,9 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
                         box_17.get() == False and box_18.get() == False and box_19.get() == False:
             messagebox.showerror("Ошибка", "Выберите документы")
         else:
+            #zntToAR = dapJson['signers'][zntToARName.get()]['znt_ip']
+            #zntZapros = dapJson['signers'][zntZaprosName.get()]['znt_ip']
+            #zntToRassm = dapJson['signers'][zntToRassmName.get()]['znt_ip']
             context = {"artCode" : artCode, "dateInit" : dateInit, "dateRegUl" : dateRegUl, "emailUl" : emailUl,
                        "inn" : inn, "kpp" : kpp, "monthInit" : monthInit, "numberCase": numberCase, "numberDt" : numberDt,
                        "ogrn" : ogrn, "partCode" : partCode, "tpdecl" : tpdecl, "ul" : ul, "ulCity": ulCity,
@@ -36,20 +38,38 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
                        "doloar_rp_sh" : doloar_rp_sh, "doloar_dp_sh" : doloar_dp_sh, "doloar_vp_sh" : doloar_vp_sh,
                        "doloar_tp_sh" : doloar_tp_sh, "doloar_ip_sh_low" : doloar_ip_sh_low, "doloar_rp_sh_low" : doloar_rp_sh_low,
                        "doloar_dp_sh_low" : doloar_dp_sh_low, "doloar_vp_sh_low" : doloar_vp_sh_low,
-                       "doloar_tp_sh_low" : doloar_tp_sh_low, "emailOar" : emailOar, "gortel" : gortel}
-
+                       "doloar_tp_sh_low" : doloar_tp_sh_low, "emailOar" : emailOar, "gortel" : gortel
+                       }
+                       #"zntToAR" : zntToAR, "zntToARName" : zntToARName.get(), "dateToAR" : dateToAR.get(), "monthToAR" : monthToAR.get(),
+                       #"zntZapros" : zntZapros, "zntZaprosName" : zntZaprosName.get(), "dateZapros" : dateZapros.get(),
+                       #"monthZapros" : monthZapros.get(), "dateProtokol" : dateProtokol.get(), "monthProtokol" : monthProtokol.get(),
+                       #"zntToRassm" : zntToRassm, "zntToRassmName" : zntToRassmName.get(), "dateToRassm" : dateToRassm.get(),
+                       #"monthToRassm" : monthToRassm.get(), "zntPost" : zntPostName, "zntPostName" : zntPostName.get(),
+                       #"datePost" : datePost.get(), "monthPost" : monthPost.get()
+                       #}
+            # ГОТОВ
             if box_01.get():
+                zntToAR_ip = dapJson['signers'][zntToARName.get()]['znt_ip']
                 doc = DocxTemplate("../templates/01.docx")
+                context.update({"zntToAR_ip" : zntToAR_ip, "zntToARName_ip" : zntToARName.get(), "dateToAR" : dateToAR.get(),
+                                "monthToAR" : monthToAR.get()})
                 doc.render(context)
                 doc.save("../buffer/" + numberCase + "__ 2.1 РЕШЕНИЕ о передаче дела для проведения АР.docx")
-
+            # ГОТОВ
             if box_02.get():
+                zntToAR_rp_low = dapJson['signers'][zntToARName.get()]['znt_rp_low']
+                zntToARName_rp = dapJson['signers'][zntToARName.get()]['rp']
                 doc = DocxTemplate("../templates/02.docx")
+                context.update({"zntToAR_rp_low" : zntToAR_rp_low, "zntToARName_rp" : zntToARName_rp, "dateToAR" : dateToAR.get(),
+                                "monthToAR" : monthToAR.get()})
                 doc.render(context)
                 doc.save("../buffer/" + numberCase + "__ 2.2 ОПРЕДЕЛЕНИЕ о принятии дела к своему проиводству.docx")
-
+            # ГОТОВ
             if box_11.get():
+                zntToRassm = dapJson['signers'][zntToRassmName.get()]['znt_ip']
                 doc = DocxTemplate("../templates/11.docx")
+                context.update({"zntToRassm" : zntToRassm, "zntToRassmName" : zntToRassmName.get(), "dateToRassm" : dateToRassm.get(),
+                                "monthToRassm" : monthToRassm.get()})
                 doc.render(context)
                 doc.save("../buffer/" + numberCase + "__ 3.2 Cправка об издержках.docx")
 
@@ -73,8 +93,8 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
     BooleanVar(), BooleanVar(), BooleanVar(), BooleanVar(), BooleanVar(), BooleanVar(), BooleanVar(), BooleanVar(),\
     BooleanVar(), BooleanVar(), BooleanVar(), BooleanVar(), BooleanVar(), BooleanVar()
 
-    znt1, znt2, znt3, znt4, dateper, monthper, datepovestka, monthpovestka, datezapros, monthzapros, dateprotokol,\
-    monthprotokol, daterassm, monthrassm, daterassm2, monthrassm2 = StringVar(), StringVar(), StringVar(), StringVar(),\
+    zntToARName, zntZaprosName, zntToRassmName, zntPostName, dateToAR, monthToAR, dateIstreb, monthIstreb, dateZapros, monthZapros, dateProtokol,\
+    monthProtokol, dateToRassm, monthToRassm, datePost, monthPost = StringVar(), StringVar(), StringVar(), StringVar(),\
     StringVar(), StringVar(), StringVar(), StringVar(), StringVar(), StringVar(), StringVar(), StringVar(), StringVar(),\
     StringVar(), StringVar(), StringVar()
 
@@ -89,12 +109,12 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
 
     Checkbutton(text="Решение о передаче ДАП", variable=box_01).place(x=10, y=10, height = 20)
     Checkbutton(text="Определение о принятии дела к своему производству", variable=box_02).place(x=200, y=10, height = 20)
-    znt1_ = ttk.Combobox(winChooseDocs, textvariable=znt1, values = listOfPer, height = 2)
+    znt1_ = ttk.Combobox(winChooseDocs, textvariable=zntToARName, values = listOfPer, height = 2)
     znt1_['state']='readonly'
     znt1_.place(x = 30, y = 35, width=110, height = 20)
     Label(text='дата передачи ДАП').place(x=220, y=35, height = 20)
-    Entry(textvariable=dateper).place(x=340, y=35, width=30, height = 20)
-    monthper_ = ttk.Combobox(winChooseDocs, textvariable=monthper, values = listOfMonths, height = 12)
+    Entry(textvariable=dateToAR).place(x=340, y=35, width=30, height = 20)
+    monthper_ = ttk.Combobox(winChooseDocs, textvariable=monthToAR, values = listOfMonths, height = 12)
     monthper_['state']='readonly'
     monthper_.place(x = 380, y = 35, width=80, height = 20)
     Label(text='2020 года').place(x=465, y=35, height = 20)
@@ -102,20 +122,20 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
     Checkbutton(text="Определение об истребовании документов и сведений", variable=box_03).place(x=10, y=80, height = 20)
     Checkbutton(text="Повестка о явке", variable=box_04).place(x=410, y=80, height = 20)
     Label(text='дата направления').place(x=220, y=105, height = 20)
-    Entry(textvariable=datepovestka).place(x=340, y=105, width=30, height = 20)
-    monthpovestka_ = ttk.Combobox(winChooseDocs, textvariable=monthpovestka, values = listOfMonths, height = 12)
+    Entry(textvariable=dateIstreb).place(x=340, y=105, width=30, height = 20)
+    monthpovestka_ = ttk.Combobox(winChooseDocs, textvariable=monthIstreb, values = listOfMonths, height = 12)
     monthpovestka_['state']='readonly'
     monthpovestka_.place(x = 380, y = 105, width=80, height = 20)
     Label(text='2020 года').place(x=465, y=105, height = 20)
     Label(text='______________________________________________________________________________________________________').place(x=10, y=125, height = 20)
     Checkbutton(text="Запрос в ГИБДД", variable=box_05).place(x=10, y=150, height = 20)
     Checkbutton(text="Запрос в Росреестр с приложением", variable=box_06).place(x=300, y=150, height = 20)
-    znt2_ = ttk.Combobox(winChooseDocs, textvariable=znt2, values = listOfPer, height = 2)
+    znt2_ = ttk.Combobox(winChooseDocs, textvariable=zntZaprosName, values = listOfPer, height = 2)
     znt2_['state']='readonly'
     znt2_.place(x = 30, y = 175, width=110, height = 20)
     Label(text='дата направления').place(x=220, y=175, height = 20)
-    Entry(textvariable=datezapros).place(x=340, y=175, width=30, height = 20)
-    monthzapros_ = ttk.Combobox(winChooseDocs, textvariable=monthzapros, values = listOfMonths, height = 12)
+    Entry(textvariable=dateZapros).place(x=340, y=175, width=30, height = 20)
+    monthzapros_ = ttk.Combobox(winChooseDocs, textvariable=monthZapros, values = listOfMonths, height = 12)
     monthzapros_['state']='readonly'
     monthzapros_.place(x = 380, y = 175, width=80, height = 20)
     Label(text='2020 года').place(x=465, y=175, height = 20)
@@ -124,8 +144,8 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
     Checkbutton(text="Шаблон ответа ЮЛ на вызов на протокол", variable=box_08).place(x=270, y=220, height = 20)
     Checkbutton(text="Шаблон протокола об АП", variable=box_09).place(x=10, y=240, height = 20)
     Label(text='дата протокола об АП').place(x=200, y=265, height = 20)
-    Entry(textvariable=dateprotokol).place(x=340, y=265, width=30, height = 20)
-    monthprotokol_ = ttk.Combobox(winChooseDocs, textvariable=monthprotokol, values = listOfMonths, height = 12)
+    Entry(textvariable=dateProtokol).place(x=340, y=265, width=30, height = 20)
+    monthprotokol_ = ttk.Combobox(winChooseDocs, textvariable=monthProtokol, values = listOfMonths, height = 12)
     monthprotokol_['state']='readonly'
     monthprotokol_.place(x = 380, y = 265, width=80, height = 20)
     Label(text='2020 года').place(x=465, y=265, height = 20)
@@ -135,12 +155,12 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
     Checkbutton(text="Определение о назначении времени и места рассмотрения ДАП", variable=box_12).place(x=10, y=330, height = 20)
     Checkbutton(text="Шаблон ТЛГ вызов на рассмотрение", variable=box_13).place(x=10, y=350, height = 20)
     Checkbutton(text="Шаблон ответа ЮЛ на вызов на рассмотрение", variable=box_14).place(x=245, y=350, height = 20)
-    znt3_ = ttk.Combobox(winChooseDocs, textvariable=znt3, values = listOfPer, height = 2)
+    znt3_ = ttk.Combobox(winChooseDocs, textvariable=zntToRassmName, values = listOfPer, height = 2)
     znt3_['state']='readonly'
     znt3_.place(x = 30, y = 375, width=110, height = 20)
     Label(text='дата передачи ДАП').place(x=220, y=375, height = 20)
-    Entry(textvariable=daterassm).place(x=340, y=375, width=30, height = 20)
-    monthrassm_ = ttk.Combobox(winChooseDocs, textvariable=monthrassm, values = listOfMonths, height = 12)
+    Entry(textvariable=dateToRassm).place(x=340, y=375, width=30, height = 20)
+    monthrassm_ = ttk.Combobox(winChooseDocs, textvariable=monthToRassm, values = listOfMonths, height = 12)
     monthrassm_['state']='readonly'
     monthrassm_.place(x = 380, y = 375, width=80, height = 20)
     Label(text='2020 года').place(x=465, y=375, height = 20)
@@ -149,12 +169,12 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
     Checkbutton(text="Определение о продлении срока рассмотрения ДАП", variable=box_16).place(x=30, y=440, height = 20)
     Checkbutton(text="Шаблон постановления по ДАП", variable=box_17).place(x=10, y=460, height = 20)
     Checkbutton(text="Представление об устранении причин и условий", variable=box_18).place(x=10, y=480, height = 20)
-    znt4_ = ttk.Combobox(winChooseDocs, textvariable=znt4, values = listOfPer, height = 2)
+    znt4_ = ttk.Combobox(winChooseDocs, textvariable=zntPostName, values = listOfPer, height = 2)
     znt4_['state']='readonly'
     znt4_.place(x = 30, y = 505, width=110, height = 20)
     Label(text='дата рассмотрения').place(x=220, y=505, height = 20)
-    Entry(textvariable=daterassm2).place(x=340, y=505, width=30, height = 20)
-    monthrassm2_ = ttk.Combobox(winChooseDocs, textvariable=monthrassm2, values = listOfMonths, height = 12)
+    Entry(textvariable=datePost).place(x=340, y=505, width=30, height = 20)
+    monthrassm2_ = ttk.Combobox(winChooseDocs, textvariable=monthPost, values = listOfMonths, height = 12)
     monthrassm2_['state']='readonly'
     monthrassm2_.place(x = 380, y = 505, width=80, height = 20)
     Label(text='2020 года').place(x=465, y= 505, height = 20)
@@ -230,5 +250,7 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
     doloar_tp_sh_low = dapJson['employeesOar'][employeeOar]['doloar_tp_sh_low']
     emailOar = dapJson['employeesOar'][employeeOar]['emailOar']
     gortel = dapJson['employeesOar'][employeeOar]['gortel']
+
+
 
     winChooseDocs.mainloop()
