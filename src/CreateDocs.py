@@ -18,10 +18,11 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
                         box_17.get() == False and box_18.get() == False and box_19.get() == False:
             messagebox.showerror("Ошибка", "Выберите документы")
         else:
-            #zntToAR = dapJson['signers'][zntToARName.get()]['znt_ip']
+
             #zntZapros = dapJson['signers'][zntZaprosName.get()]['znt_ip']
             #zntToRassm = dapJson['signers'][zntToRassmName.get()]['znt_ip']
-            context = {"artCode" : artCode, "dateInit" : dateInit, "dateRegUl" : dateRegUl, "emailUl" : emailUl,
+            context = {"artCode" : artCode, "codeRF_sh" : codeRF_sh,
+                       "dateInit" : dateInit, "dateRegUl" : dateRegUl, "emailUl" : emailUl,
                        "inn" : inn, "kpp" : kpp, "monthInit" : monthInit, "numberCase": numberCase, "numberDt" : numberDt,
                        "ogrn" : ogrn, "partCode" : partCode, "tpdecl" : tpdecl, "ul" : ul, "ulCity": ulCity,
                        "ulIndex" : ulIndex, "ulStreetOffice": ulStreetOffice, "ulSubrf": ulSubrf, "zpName_dp" : zpName_dp,
@@ -40,7 +41,7 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
                        "doloar_dp_sh_low" : doloar_dp_sh_low, "doloar_vp_sh_low" : doloar_vp_sh_low,
                        "doloar_tp_sh_low" : doloar_tp_sh_low, "emailOar" : emailOar, "gortel" : gortel
                        }
-                       #"zntToAR" : zntToAR, "zntToARName" : zntToARName.get(), "dateToAR" : dateToAR.get(), "monthToAR" : monthToAR.get(),
+
                        #"zntZapros" : zntZapros, "zntZaprosName" : zntZaprosName.get(), "dateZapros" : dateZapros.get(),
                        #"monthZapros" : monthZapros.get(), "dateProtokol" : dateProtokol.get(), "monthProtokol" : monthProtokol.get(),
                        #"zntToRassm" : zntToRassm, "zntToRassmName" : zntToRassmName.get(), "dateToRassm" : dateToRassm.get(),
@@ -64,6 +65,27 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
                                 "monthToAR" : monthToAR.get()})
                 doc.render(context)
                 doc.save("../buffer/" + numberCase + "__ 2.2 ОПРЕДЕЛЕНИЕ о принятии дела к своему проиводству.docx")
+
+            if box_03.get():
+                doc = DocxTemplate("../templates/03.docx")
+                context.update({"dateIstreb" : dateIstreb.get(), "monthIstreb" : monthIstreb.get()})
+                doc.render(context)
+                doc.save("../buffer/" + numberCase + "__ 2.3 ОПРЕДЕЛЕНИЕ об истребовании документов и сведений.docx")
+
+            if box_04.get():
+                doc = DocxTemplate("../templates/04.docx")
+                context.update({"dateIstreb" : dateIstreb.get(), "monthIstreb" : monthIstreb.get()})
+                doc.render(context)
+                doc.save("../buffer/" + numberCase + "__ 2.4 ПОВЕСТКА о явке.docx")
+
+            # ГОТОВ
+            if box_05.get():
+                zntZapros = dapJson['signers'][zntZaprosName.get()]['znt_ip']
+                doc = DocxTemplate("../templates/05.docx")
+                context.update({"zntZapros" : zntZapros, "zntZaprosName" : zntZaprosName.get()})
+                doc.render(context)
+                doc.save("../buffer/" + numberCase + "__ 2.5 Запрос в ГИБДД.docx")
+
             # ГОТОВ
             if box_11.get():
                 zntToRassm = dapJson['signers'][zntToRassmName.get()]['znt_ip']
@@ -140,8 +162,8 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
     monthzapros_.place(x = 380, y = 175, width=80, height = 20)
     Label(text='2020 года').place(x=465, y=175, height = 20)
     Label(text='______________________________________________________________________________________________________').place(x=10, y=195, height = 20)
-    Checkbutton(text="Шаблон ТЛГ вызов на протокол", variable=box_07).place(x=10, y=220, height = 20)
-    Checkbutton(text="Шаблон ответа ЮЛ на вызов на протокол", variable=box_08).place(x=270, y=220, height = 20)
+    Checkbutton(text="Телеграмма - вызов на протокол", variable=box_07).place(x=10, y=220, height = 20)
+    Checkbutton(text="Уведомление - вызов на протокол", variable=box_08).place(x=310, y=220, height = 20)
     Checkbutton(text="Шаблон протокола об АП", variable=box_09).place(x=10, y=240, height = 20)
     Label(text='дата протокола об АП').place(x=200, y=265, height = 20)
     Entry(textvariable=dateProtokol).place(x=340, y=265, width=30, height = 20)
@@ -153,8 +175,8 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
     Checkbutton(text="Рапорт об окончании адм.расследования", variable=box_10).place(x=10, y=310, height = 20)
     Checkbutton(text="Справка об отсутствии издержек", variable=box_11).place(x=320, y=310, height = 20)
     Checkbutton(text="Определение о назначении времени и места рассмотрения ДАП", variable=box_12).place(x=10, y=330, height = 20)
-    Checkbutton(text="Шаблон ТЛГ вызов на рассмотрение", variable=box_13).place(x=10, y=350, height = 20)
-    Checkbutton(text="Шаблон ответа ЮЛ на вызов на рассмотрение", variable=box_14).place(x=245, y=350, height = 20)
+    Checkbutton(text="Письмо - вызов на рассмотрерние", variable=box_13).place(x=10, y=350, height = 20)
+    Checkbutton(text="Телеграмма - вызов на рассмотрение", variable=box_14).place(x=245, y=350, height = 20)
     znt3_ = ttk.Combobox(winChooseDocs, textvariable=zntToRassmName, values = listOfPer, height = 2)
     znt3_['state']='readonly'
     znt3_.place(x = 30, y = 375, width=110, height = 20)
@@ -189,6 +211,7 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
     numberCase = chosenDeal
 
     artCode = numbersJson[numberCase]['artCode']
+    codeRF_sh = numbersJson[numberCase]['codeRF_sh']
     dateInit = numbersJson[numberCase]['dateInit']
     dateRegUl = numbersJson[numberCase]['company']['dateRegUl']
     emailUl = numbersJson[numberCase]['company']['emailUl']
@@ -204,11 +227,11 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
     ulIndex = numbersJson[numberCase]['company']['address']['ulIndex']
     ulStreetOffice = numbersJson[numberCase]['company']['address']['ulStreetOffice']
     ulSubrf = numbersJson[numberCase]['company']['address']['ulSubrf']
-    zpName_dp = numbersJson[numberCase]['company']['actioner']['zpName_dp']
     zpName_ip = numbersJson[numberCase]['company']['actioner']['zpName_ip']
     zpName_rp = numbersJson[numberCase]['company']['actioner']['zpName_rp']
-    zpName_tp = numbersJson[numberCase]['company']['actioner']['zpName_tp']
+    zpName_dp = numbersJson[numberCase]['company']['actioner']['zpName_dp']
     zpName_vp = numbersJson[numberCase]['company']['actioner']['zpName_vp']
+    zpName_tp = numbersJson[numberCase]['company']['actioner']['zpName_tp']
     zpPosition = numbersJson[numberCase]['company']['actioner']['zpPosition']
     zpPosition_ip = dapJson['actionerPositions'][zpPosition]['ip']
     zpPosition_rp = dapJson['actionerPositions'][zpPosition]['rp']

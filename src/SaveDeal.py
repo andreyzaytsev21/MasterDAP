@@ -10,9 +10,9 @@ def runSaveDeal(resourcesProvider: ResourcesProvider):
         winEnterWindow.destroy()
 
     def show_message():
-        if numberCase.get() == '' or dateInit.get() == '' or monthInit.get() == '' or partCode.get() == '' or artCode.get() == ''\
-            or ul.get() == '' or ogrn.get() == '' or inn.get() == '' or kpp.get() == '' or dateRegUl.get() == ''\
-            or ulIndex.get() == '' or ulSubrf.get() == '' or ulCity.get() == '' or ulStreetOffice.get() == '' or zpPosition.get() == ''\
+        if numberCase.get() == '' or dateInit.get() == '' or monthInit.get() == '' or artCode.get() == '' or ul.get() == '' \
+            or ogrn.get() == '' or inn.get() == '' or kpp.get() == '' or dateRegUl.get() == '' or ulIndex.get() == '' \
+            or ulSubrf.get() == '' or ulCity.get() == '' or ulStreetOffice.get() == '' or zpPosition.get() == ''\
             or zpName_ip.get() == '' or emailUl.get() == '' or numberDt.get() == '' or tpdecl.get() == 0:
             messagebox.showerror("Ошибка", "Заполните все поля")
         else:
@@ -30,6 +30,7 @@ def runSaveDeal(resourcesProvider: ResourcesProvider):
                 codeRF_vp = "часть " + partCode.get() + " статьи " + artCode.get()
                 codeRF_tp = "частью " + partCode.get() + " статьи " + artCode.get()
                 codeRF_sh = "ч. " + partCode.get() + " ст. " + artCode.get()
+
             letters2 = zpName_ip.get()[len(zpName_ip.get())-2:]
             letters3 = zpName_ip.get()[len(zpName_ip.get())-3:]
             if letters3 == "ева" or letters3 == "ёва" or letters3 == "ина" or letters3 == "ына" or letters3 == "ова":
