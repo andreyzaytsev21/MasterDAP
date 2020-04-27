@@ -4,6 +4,7 @@ import json
 from SaveDeal import runSaveDeal
 from ResourcesProvider import ResourcesProvider
 from CreateDocs import runCreateDocs
+from tkinter import *
 
 def runManageDeals(resourcesProvider: ResourcesProvider, chosenEmployeeOar: str):
     class Widget(Qt.QWidget):
