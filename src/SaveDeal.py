@@ -218,3 +218,9 @@ def runSaveDeal(resourcesProvider: ResourcesProvider):
 
 
     winEnterWindow.mainloop()
+
+
+def make_json_str_bind(json_obj, dict_path, container: list):
+    bind = JsonToStrVarBind(json_obj, dict_path)
+    container.append(bind)
+    return bind.get_str_var()

@@ -1,9 +1,9 @@
 class ResourcesProvider:
-    def __init__(self, resourcesPath):
-        self.resourcesPath = resourcesPath
+    def __init__(self, resources_path):
+        self.resources_path = resources_path
 
     def getConfigPath(self):
-        return self.resourcesPath + "dap.json"
+        return self.resources_path + "dap.json"
 
     def getDealsPath(self):
-        return self.resourcesPath + "numbers.json"
+        return self.resources_path + "numbers.json"
