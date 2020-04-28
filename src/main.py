@@ -1,9 +1,8 @@
-from EmployeeSelection import *
-from ManageDeals import runManageDeals
-from SaveDeal import runSaveDeal
-from ResourcesProvider import *
+from EmployeeSelection import run_employee_selection
+from ManageDeals import run_manage_deals
+from ResourcesProvider import ResourcesProvider
 
 resourcesProvider = ResourcesProvider("../data/")
 
-
-chosenEmployeeOar = runEmployeeSelection(resourcesProvider)
+chosenEmployeeOar = run_employee_selection(resourcesProvider)
+run_manage_deals(resourcesProvider, chosenEmployeeOar)
