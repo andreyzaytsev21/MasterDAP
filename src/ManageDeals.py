@@ -5,7 +5,7 @@ from PyQt5.QtGui import QPalette, QColor
 
 from CreateDocs import runCreateDocs
 from ResourcesProvider import ResourcesProvider
-from SaveDeal import runSaveDeal
+from SaveDeal import save_deal
 
 
 def run_manage_deals(resourcesProvider: ResourcesProvider, chosenEmployeeOar: str):
@@ -32,7 +32,7 @@ def run_manage_deals(resourcesProvider: ResourcesProvider, chosenEmployeeOar: st
             # modeButton.pressed.connect(self.poverhMode)
             layoutVertical.addWidget(createCaseButton)
 
-            with open(resourcesProvider.getDealsPath(), 'r', encoding='utf-8') as f:
+            with open(resourcesProvider.get_deals_path(), 'r', encoding='utf-8') as f:
                 d = json.load(f)
             labels = [""] + [""] + [""] + ["№ дела об АП"] + ["КоАП РФ"] + ["юридическое лицо"] + ["ИНН"] + [
                 "юридический адрес"]
@@ -46,16 +46,23 @@ def run_manage_deals(resourcesProvider: ResourcesProvider, chosenEmployeeOar: st
 
             for i, (key, value) in enumerate(allItemsReversed):
                 rows = [""] + [""] + [""] + ["10418000-" + key + "/2020"] + \
-                       [d[key]["codeRF_sh"]] + [d[key]["company"]["ul"]] + [d[key]["company"]["inn"]] + \
-                       [d[key]["company"]["address"]["ulIndex"] + ", " + d[key]["company"]["address"]["ulCity"] + ", " + \
-                        d[key]["company"]["address"]["ulStreetOffice"]]
+                       [d[key]["articleCode"]] + [d[key]["company"]["name"]] + [d[key]["company"]["inn"]] + \
+                       [d[key]["company"]["address"]["index"] + ", " + d[key]["company"]["address"]["city"] + ", " + \
+                        d[key]["company"]["address"]["street"]]
                 win.insertRow(win.rowCount())
                 buttonCreate = Qt.QPushButton()
                 buttonCreate.setIcon(iconForm)
-                buttonCreate.pressed.connect(lambda chosenDeal=key: self.goToFormDocs(chosenDeal, chosenEmployeeOar))
+                buttonCreate.pressed.connect(
+                    lambda chosen_deal=key:
+                    self.goToFormDocs(chosen_deal, chosenEmployeeOar)
+                )
                 win.setCellWidget(i, 0, buttonCreate)
                 buttonEdit = Qt.QPushButton()
                 buttonEdit.setIcon(iconEdit)
+                buttonEdit.pressed.connect(
+                    lambda chosen_deal_key=key, chosen_deal_json=value:
+                    self.goToEditDeal(chosen_deal_key, chosen_deal_json)
+                )
                 win.setCellWidget(i, 1, buttonEdit)
                 buttonDelete = Qt.QPushButton()
                 # buttonDelete.pressed.connect(lambda chosenDeal=key: self.goToDeleteDeal(chosenDeal))
@@ -75,13 +82,13 @@ def run_manage_deals(resourcesProvider: ResourcesProvider, chosenEmployeeOar: st
         #   workWin.wm_attributes('-topmost',1)
 
         def goToRunSaveDeal(self):
-            runSaveDeal(resourcesProvider)
+            save_deal(resourcesProvider)
 
         def goToFormDocs(self, chosenDeal, chosenEmployeeOar):
             runCreateDocs(resourcesProvider, chosenDeal, chosenEmployeeOar)
 
-        # def goToEditDeal(self):
-        # runEditDeal(resourcesProvider, chosenDeal)
+        def goToEditDeal(self, chosen_deal_number, chosen_deal_json):
+            save_deal(resourcesProvider, chosen_deal_number, chosen_deal_json)
 
         # def goToDeleteDeal(self, chosenDeal):
 
