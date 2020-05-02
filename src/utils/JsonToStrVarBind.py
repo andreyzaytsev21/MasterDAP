@@ -1,10 +1,18 @@
 from tkinter import StringVar
 
 
-def _get_name(fst_lvl_key, scd_lvl_key):
-    return fst_lvl_key + ("." + scd_lvl_key or "")
-
-
+# json_object - это json с возможными данными
+# dict_path - путь до значения
+# Например:
+# json_obj =
+# {
+#   "company": {
+#       "name" : "Фёдор"
+#   }
+# }
+# dict_path = company.name
+# Ожидаемый результат:
+# Фёдор
 def _get_value(json_obj, dict_path: str):
     res = json_obj
     for it in dict_path.split("."):
@@ -14,6 +22,25 @@ def _get_value(json_obj, dict_path: str):
     return res
 
 
+# json_object - это json
+# dict_path - путь до значения
+# value - новое значение
+# Например:
+# json_obj =
+# {
+#   "company": {
+#       "name" : "Фёдор"
+#   }
+# }
+# dict_path = company.name
+# value = "Новое что-то"
+# Ожидаемый результат:
+# json_obj =
+# {
+#   "company": {
+#       "name" : "Новое что-то"
+#   }
+# }
 def _update_json(json_obj, dict_path: str, value: str):
     obj_it = json_obj
     dict_paths = dict_path.split(".")
