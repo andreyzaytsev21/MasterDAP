@@ -69,3 +69,9 @@ class JsonToStrVarBind:
 
     def update_json(self):
         _update_json(self._json_obj, self._dict_path, self._str_var.get())
+
+    # def is_empty(self):
+    # todo
+
+    # def is_required(self):
+    # todo

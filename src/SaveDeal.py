@@ -14,6 +14,9 @@ def save_deal(resources_provider: ResourcesProvider, deal_number="", deal_json=N
         dialog.destroy()
 
     def show_message():
+        # todo
+        #  1. x.is_empty()
+        #  2. Добавить проверку на то, обязательное поле или нет (is_required)
         if deal_number_cont.get() == '' or next((x for x in bindings if x.get_str_var().get() == ''), None) is not None:
             messagebox.showerror("Ошибка", "Заполните все поля")
         else:
