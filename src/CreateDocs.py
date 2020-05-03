@@ -137,7 +137,7 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
     StringVar(), StringVar(), StringVar(), StringVar(), StringVar(), StringVar(), StringVar(), StringVar(), StringVar(),\
     StringVar(), StringVar()
 
-    with open(resourcesProvider.getConfigPath(), 'r', encoding='utf-8') as f:
+    with open(resourcesProvider.get_config_path(), 'r', encoding='utf-8') as f:
         dapJson = json.load(f)
     listOfPer = []
     for l in dapJson['signers'].keys():
@@ -278,7 +278,7 @@ def runCreateDocs(resourcesProvider: ResourcesProvider, chosenDeal: str, chosenE
     Button(text="Сформировать", command=formDocs).place(relx=.5, rely=.97, anchor="c")
     Button(text="Отмена", command=close_window).place(relx=.97, rely=.97, anchor="e")
 
-    with open(resourcesProvider.getDealsPath(), 'r', encoding='utf-8') as readNumbers:
+    with open(resourcesProvider.get_deals_path(), 'r', encoding='utf-8') as readNumbers:
         numbersJson = json.load(readNumbers)
 
     numberCase = chosenDeal

@@ -65,7 +65,4 @@ def create_button(selected_employee_reference: StringVar, dialog: Tk):
 
 
 def load_employees(resources_provider: ResourcesProvider):
-    with open(resources_provider.getConfigPath(), 'r', encoding='utf-8') as f:
-        dap_json = json.load(f)
-
-    return [*dap_json['employeesOar']]
+    return [*resources_provider.load_config()['employeesOar']]

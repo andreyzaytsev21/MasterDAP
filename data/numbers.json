@@ -1,74 +1,132 @@
 {
-    "123": {
-        "artCode": "16.2",
-        "codeRF_dp": "части 2 статьи 16.2",
-        "codeRF_ip": "часть 2 статьи 16.2",
-        "codeRF_rp": "части 2 статьи 16.2",
-        "codeRF_sh": "ч. 2 ст. 16.2",
-        "codeRF_tp": "частью 2 статьи 16.2",
-        "codeRF_vp": "часть 2 статьи 16.2",
+    "2": {
+        "articleCode": "441",
         "company": {
-            "actioner": {
-                "zpName_dp": "А.П. Зайцеву",
-                "zpName_ip": "А.П. Зайцев",
-                "zpName_rp": "А.П. Зайцева",
-                "zpName_tp": "А.П. Зайцевым",
-                "zpName_vp": "А.П. Зайцева",
-                "zpPosition": "генеральный директор"
-            },
             "address": {
-                "ulCity": "г. Нижний Новгород",
-                "ulIndex": "603053",
-                "ulStreetOffice": "Бусыгина пр., д. 36, кв. 111",
-                "ulSubrf": "Нижегородская обл."
+                "city": "4124",
+                "index": "124",
+                "state": "4214",
+                "street": "4124"
             },
-            "dateRegUl": "10.09.2010",
-            "emailUl": "zap@mail.ru",
-            "inn": "52145236",
-            "kpp": "52015201",
-            "ogrn": "1025485632",
-            "ul": "ООО «Компания»"
+            "email": "4421",
+            "inn": "142",
+            "kpp": "4412",
+            "name": "124",
+            "ogrn": "44",
+            "registrationDate": "442",
+            "representative": {
+                "name": "4412",
+                "position": "директор"
+            }
         },
-        "dateInit": "24",
-        "monthInit": "апреля",
-        "numberDt": "10418010/050819/0256458",
-        "partCode": "2",
-        "tpdecl": 1
+        "customsRepresentative": "2",
+        "dayInit": "3",
+        "monthInit": "марта",
+        "numberDt": "421",
+        "partCode": "3"
     },
-    "777": {
-        "artCode": "16.7",
-        "codeRF_dp": "статье 16.7",
-        "codeRF_ip": "статья 16.7",
-        "codeRF_rp": "статьи 16.7",
-        "codeRF_sh": "ст. 16.7",
-        "codeRF_tp": "статьей 16.7",
-        "codeRF_vp": "статью 16.7",
+    "231": {
+        "articleCode": "32",
         "company": {
-            "actioner": {
-                "zpName_dp": "4684689",
-                "zpName_ip": "4684689",
-                "zpName_rp": "4684689",
-                "zpName_tp": "4684689",
-                "zpName_vp": "4684689",
-                "zpPosition": "директор"
-            },
             "address": {
-                "ulCity": "68468468",
-                "ulIndex": "4684684",
-                "ulStreetOffice": "468468486",
-                "ulSubrf": "684684684"
+                "city": "123",
+                "index": "123",
+                "state": "123",
+                "street": "12"
             },
-            "dateRegUl": "4684684",
-            "emailUl": "46846846",
-            "inn": "4684896486",
-            "kpp": "68486468",
-            "ogrn": "469849684",
-            "ul": "ООО"
+            "email": "3312",
+            "inn": "312",
+            "kpp": "31",
+            "name": "123",
+            "ogrn": "123",
+            "registrationDate": "31",
+            "representative": {
+                "name": "3312",
+                "position": "генеральный директор"
+            }
         },
-        "dateInit": "10",
-        "monthInit": "июня",
-        "numberDt": "68468468",
-        "partCode": "-",
-        "tpdecl": 0
+        "customsRepresentative": "2",
+        "dayInit": "31",
+        "monthInit": "февраля",
+        "numberDt": "331",
+        "partCode": "3"
+    },
+    "244": {
+        "articleCode": "1",
+        "company": {
+            "address": {
+                "city": "44",
+                "index": "4124",
+                "state": "14412",
+                "street": "124"
+            },
+            "email": "244",
+            "inn": "124",
+            "kpp": "441",
+            "name": "344",
+            "ogrn": "214",
+            "registrationDate": "412",
+            "representative": {
+                "name": "441",
+                "position": "директор"
+            }
+        },
+        "customsRepresentative": "1",
+        "dayInit": "1",
+        "monthInit": "января",
+        "numberDt": "14",
+        "partCode": "2"
+    },
+    "2441": {
+        "articleCode": "123",
+        "company": {
+            "address": {
+                "city": "123",
+                "index": "1424",
+                "state": "44",
+                "street": "44"
+            },
+            "email": "442",
+            "inn": "12412",
+            "kpp": "14214",
+            "name": "3",
+            "ogrn": "241",
+            "registrationDate": "442",
+            "representative": {
+                "name": "441",
+                "position": "директор"
+            }
+        },
+        "customsRepresentative": "2",
+        "dayInit": "27",
+        "monthInit": "марта",
+        "numberDt": "1",
+        "partCode": "44"
+    },
+    "2481": {
+        "articleCode": "1",
+        "company": {
+            "address": {
+                "city": "44",
+                "index": "4124",
+                "state": "14412",
+                "street": "124"
+            },
+            "email": "244",
+            "inn": "124",
+            "kpp": "441",
+            "name": "ОЧКО",
+            "ogrn": "214",
+            "registrationDate": "412",
+            "representative": {
+                "name": "441",
+                "position": "директор"
+            }
+        },
+        "customsRepresentative": "1",
+        "dayInit": "1",
+        "monthInit": "января",
+        "numberDt": "14",
+        "partCode": "2"
     }
 }

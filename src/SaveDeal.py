@@ -3,218 +3,151 @@ from tkinter import messagebox
 from tkinter import ttk
 import json
 from ResourcesProvider import ResourcesProvider
+from utils.JsonToStrVarBind import JsonToStrVarBind
 
-def runSaveDeal(resourcesProvider: ResourcesProvider):
+
+def save_deal(resources_provider: ResourcesProvider, deal_number="", deal_json=None):
+    if deal_json is None:
+        deal_json = {}
 
     def close_window():
-        winEnterWindow.destroy()
+        dialog.destroy()
 
     def show_message():
-        if numberCase.get() == '' or dateInit.get() == '' or monthInit.get() == '' or artCode.get() == '' or ul.get() == '' \
-            or ogrn.get() == '' or inn.get() == '' or kpp.get() == '' or dateRegUl.get() == '' or ulIndex.get() == '' \
-            or ulSubrf.get() == '' or ulCity.get() == '' or ulStreetOffice.get() == '' or zpPosition.get() == ''\
-            or zpName_ip.get() == '' or emailUl.get() == '' or numberDt.get() == '' or tpdecl.get() == 0:
+        # todo
+        #  1. x.is_empty()
+        #  2. Добавить проверку на то, обязательное поле или нет (is_required)
+        if deal_number_cont.get() == '' or next((x for x in bindings if x.get_str_var().get() == ''), None) is not None:
             messagebox.showerror("Ошибка", "Заполните все поля")
         else:
-            if partCode.get() == '' or partCode.get() == '-':
-                codeRF_ip = "статья " + artCode.get()
-                codeRF_rp = "статьи " + artCode.get()
-                codeRF_dp = "статье " + artCode.get()
-                codeRF_vp = "статью " + artCode.get()
-                codeRF_tp = "статьей " + artCode.get()
-                codeRF_sh = "ст. " + artCode.get()
-            else:
-                codeRF_ip = "часть " + partCode.get() + " статьи " + artCode.get()
-                codeRF_rp = "части " + partCode.get() + " статьи " + artCode.get()
-                codeRF_dp = "части " + partCode.get() + " статьи " + artCode.get()
-                codeRF_vp = "часть " + partCode.get() + " статьи " + artCode.get()
-                codeRF_tp = "частью " + partCode.get() + " статьи " + artCode.get()
-                codeRF_sh = "ч. " + partCode.get() + " ст. " + artCode.get()
+            for x in bindings:
+                x.update_json()
+            update_deals_storage(resources_provider, deal_number_cont.get(), deal_json)
+            messagebox.showinfo("Сохранено",
+                                "Добавлено новое дело об АП\n\n10418000-" + deal_number_cont.get() + "/2020\n")
+            dialog.destroy()
 
-            letters2 = zpName_ip.get()[len(zpName_ip.get())-2:]
-            letters3 = zpName_ip.get()[len(zpName_ip.get())-3:]
-            if letters3 == "ева" or letters3 == "ёва" or letters3 == "ина" or letters3 == "ына" or letters3 == "ова":
-                zpName_rp = zpName_ip.get()[:len(zpName_ip.get())-1] + "ой"
-                zpName_dp = zpName_ip.get()[:len(zpName_ip.get())-1] + "ой"
-                zpName_vp = zpName_ip.get()[:len(zpName_ip.get())-1] + "у"
-                zpName_tp = zpName_ip.get()[:len(zpName_ip.get())-1] + "ой"
-            else:
-                if letters2 == "ев" or letters2 == "ёв" or letters2 == "ин" or letters2 == "ын" or letters2 == "ов":
-                    zpName_rp = zpName_ip.get() + "а"
-                    zpName_dp = zpName_ip.get() + "у"
-                    zpName_vp = zpName_ip.get() + "а"
-                    zpName_tp = zpName_ip.get() + "ым"
-                elif letters2 == "ий":
-                    zpName_rp = zpName_ip.get()[:len(zpName_ip.get())-2] + "ого"
-                    zpName_dp = zpName_ip.get()[:len(zpName_ip.get())-2] + "ому"
-                    zpName_vp = zpName_ip.get()[:len(zpName_ip.get())-2] + "ого"
-                    zpName_tp = zpName_ip.get()[:len(zpName_ip.get())-2] + "им"
-                elif letters2 == "ый":
-                    zpName_rp = zpName_ip.get()[:len(zpName_ip.get())-2] + "ого"
-                    zpName_dp = zpName_ip.get()[:len(zpName_ip.get())-2] + "ому"
-                    zpName_vp = zpName_ip.get()[:len(zpName_ip.get())-2] + "ого"
-                    zpName_tp = zpName_ip.get()[:len(zpName_ip.get())-2] + "ым"
-                elif letters2 == "ая":
-                    zpName_rp = zpName_ip.get()[:len(zpName_ip.get())-2] + "ой"
-                    zpName_dp = zpName_ip.get()[:len(zpName_ip.get())-2] + "ой"
-                    zpName_vp = zpName_ip.get()[:len(zpName_ip.get())-2] + "ую"
-                    zpName_tp = zpName_ip.get()[:len(zpName_ip.get())-2] + "ой"
-                else:
-                    zpName_rp = zpName_ip.get()
-                    zpName_dp = zpName_ip.get()
-                    zpName_vp = zpName_ip.get()
-                    zpName_tp = zpName_ip.get()
+    dialog = create_dialog()
+    deal_number_cont = StringVar(value=deal_number)
+    bindings = []
 
-            newDeal = {
-                "partCode" : partCode.get(),
-                "artCode" : artCode.get(),
-                "codeRF_ip" : codeRF_ip,
-                "codeRF_rp" : codeRF_rp,
-                "codeRF_dp" : codeRF_dp,
-                "codeRF_vp" : codeRF_vp,
-                "codeRF_tp" : codeRF_tp,
-                "codeRF_sh" : codeRF_sh,
-                "dateInit" : dateInit.get(),
-                "monthInit" : monthInit.get(),
-                "numberDt" : numberDt.get(),
-                "tpdecl" : tpdecl.get(),
-                "company" : {
-                        "ul" : ul.get(),
-                        "ogrn" : ogrn.get(),
-                        "inn" : inn.get(),
-                        "kpp" : kpp.get(),
-                        "dateRegUl" : dateRegUl.get(),
-                        "emailUl" : emailUl.get(),
-                        "address" : {
-                            "ulIndex" : ulIndex.get(),
-                            "ulSubrf": ulSubrf.get(),
-                            "ulCity": ulCity.get(),
-                            "ulStreetOffice": ulStreetOffice.get()
-                        },
-                        "actioner" : {
-                            "zpPosition" : zpPosition.get(),
-                            "zpName_ip" : zpName_ip.get(),
-                            "zpName_rp" : zpName_rp,
-                            "zpName_dp" : zpName_dp,
-                            "zpName_vp" : zpName_vp,
-                            "zpName_tp" : zpName_tp
-                        }
-                    }
-                }
+    Label(text='10418000-', bg='#bdf0d4').place(x=10, y=10, height=20)
+    Entry(textvariable=deal_number_cont).place(x=70, y=10, width=50, height=20)
+    Label(text='/2020', bg='#bdf0d4').place(x=120, y=10, height=20)
 
-            filePointer = open(resourcesProvider.getDealsPath(), 'r', encoding='utf-8')
-            existingDeals = json.load(filePointer)
-            filePointer.close()
-            existingDeals[numberCase.get()] = newDeal
-            filePointer = open(resourcesProvider.getDealsPath(), 'w', encoding='utf-8')
-            filePointer.write(str(json.dumps(existingDeals, ensure_ascii=False, sort_keys=True, indent=4)))
-            filePointer.close()
+    Label(text='дата возбуждения', bg='#bdf0d4').place(x=10, y=40, height=20)
+    Entry(textvariable=make_json_str_bind(deal_json, "dayInit", bindings)).place(x=120, y=40, width=30, height=20)
+    dap_config = resources_provider.load_config()
 
-            messagebox.showinfo("Сохранено", "Добавлено новое дело об АП\n\n10418000-" + numberCase.get() + "/2020\n" + ul.get())
-            winEnterWindow.destroy()
+    monthvozb_ = ttk.Combobox(
+        dialog,
+        textvariable=make_json_str_bind(deal_json, "monthInit", bindings),
+        values=[*dap_config['months']],
+        height=12
+    )
+    monthvozb_['state'] = 'readonly'
+    monthvozb_.place(x=160, y=40, width=80, height=20)
 
+    Label(text='2020 года', bg='#bdf0d4').place(x=240, y=40, height=20)
 
-    winEnterWindow = Tk()
-    winEnterWindow.title("Добавить/Изменить ДАП")
-    w = winEnterWindow.winfo_screenwidth()
-    h = winEnterWindow.winfo_screenheight()
-    w = w // 2
-    h = h // 2
-    w = w - 255
-    h = h - 300
-    winEnterWindow.geometry('510x510+{}+{}'.format(w, h))
-    winEnterWindow.configure(bg ='#bdf0d4')
+    Label(text='часть', bg='#bdf0d4').place(x=10, y=70, height=20)
+    Entry(textvariable=make_json_str_bind(deal_json, "partCode", bindings))\
+        .place(x=50, y=70, width=30, height=20)
+    Label(text='статьи', bg='#bdf0d4').place(x=85, y=70, height=20)
+    Entry(textvariable=make_json_str_bind(deal_json, "articleCode", bindings))\
+        .place(x=130, y=70, width=60, height=20)
+    Label(text='КоАП РФ', bg='#bdf0d4').place(x=195, y=70, height=20)
 
-    numberCase = StringVar()
-    dateInit = StringVar()
-    monthInit = StringVar()
-    partCode = StringVar()
-    artCode = StringVar()
-    ul = StringVar()
-    ogrn = StringVar()
-    inn = StringVar()
-    kpp = StringVar()
-    dateRegUl = StringVar()
-    ulIndex = StringVar()
-    ulSubrf = StringVar()
-    ulCity = StringVar()
-    ulStreetOffice = StringVar()
-    zpPosition = StringVar()
-    zpName_ip = StringVar()
-    emailUl = StringVar()
-    numberDt = StringVar()
-    tpdecl = IntVar()
+    Label(text='юридическое лицо', bg='#bdf0d4').place(x=10, y=100, height=20)
+    Entry(textvariable=make_json_str_bind(deal_json, "company.name", bindings))\
+        .place(x=130, y=100, width=370, height=20)
 
+    Label(text='ОГРН', bg='#bdf0d4').place(x=10, y=130, height=20)
+    Entry(textvariable=make_json_str_bind(deal_json, "company.ogrn", bindings))\
+        .place(x=60, y=130, width=150, height=20)
 
-    Label(text='10418000-', bg ='#bdf0d4').place(x=10, y=10, height = 20)
-    Entry(textvariable=numberCase).place(x=70, y=10, width=50, height = 20)
-    Label(text='/2020', bg ='#bdf0d4').place(x=120, y=10, height = 20)
+    Label(text='ИНН', bg='#bdf0d4').place(x=10, y=160, height=20)
+    Entry(textvariable=make_json_str_bind(deal_json, "company.inn", bindings))\
+        .place(x=60, y=160, width=150, height=20)
 
-    Label(text='дата возбуждения', bg ='#bdf0d4').place(x=10, y=40, height = 20)
-    Entry(textvariable=dateInit).place(x=120, y=40, width=30, height = 20)
-    with open(resourcesProvider.getConfigPath(), 'r', encoding='utf-8') as f:
-        dapJson = json.load(f)
+    Label(text='КПП', bg='#bdf0d4').place(x=10, y=190, height=20)
+    Entry(textvariable=make_json_str_bind(deal_json, "company.kpp", bindings))\
+        .place(x=60, y=190, width=150, height=20)
 
-    listOfMonths = []
-    for l in dapJson['months'].keys():
-        listOfMonths.append(l)
-    monthvozb_ = ttk.Combobox(winEnterWindow, textvariable=monthInit, values = listOfMonths, height = 12)
-    monthvozb_['state']='readonly'
-    monthvozb_.place(x = 160, y = 40, width=80, height = 20)
+    Label(text='дата государственной регистрации ЮЛ', bg='#bdf0d4').place(x=10, y=220, height=20)
+    Entry(textvariable=make_json_str_bind(deal_json, "company.registrationDate", bindings))\
+        .place(x=240, y=220, width=90, height=20)
 
-    Label(text='2020 года', bg ='#bdf0d4').place(x=240, y=40, height = 20)
+    Label(text='юридический адрес', bg='#bdf0d4').place(x=10, y=250, height=20)
+    Entry(textvariable=make_json_str_bind(deal_json, "company.address.index", bindings))\
+        .place(x=130, y=250, width=80, height=20)
+    Entry(textvariable=make_json_str_bind(deal_json, "company.address.state", bindings))\
+        .place(x=220, y=250, width=280, height=20)
+    Entry(textvariable=make_json_str_bind(deal_json, "company.address.city", bindings))\
+        .place(x=10, y=280, width=235, height=20)
+    Entry(textvariable=make_json_str_bind(deal_json, "company.address.street", bindings))\
+        .place(x=255, y=280, width=245, height=20)
 
-    Label(text='часть', bg ='#bdf0d4').place(x=10, y=70, height = 20)
-    Entry(textvariable=partCode).place(x=50, y=70, width=30, height = 20)
-    Label(text='статьи', bg ='#bdf0d4').place(x=85, y=70, height = 20)
-    Entry(textvariable=artCode).place(x=130, y=70, width=60, height = 20)
-    Label(text='КоАП РФ', bg ='#bdf0d4').place(x=195, y=70, height = 20)
+    Label(text='законный представитель', bg='#bdf0d4').place(x=10, y=310, height=20)
+    zpPosition_ = ttk.Combobox(
+        dialog,
+        textvariable=make_json_str_bind(deal_json, "company.representative.position", bindings),
+        values=[*dap_config['actionerPositions']],
+        height=2
+    )
+    zpPosition_['state'] = 'readonly'
+    zpPosition_.place(x=160, y=310, width=150, height=20)
 
-    Label(text='юридическое лицо', bg ='#bdf0d4').place(x=10, y=100, height = 20)
-    Entry(textvariable=ul).place(x=130, y=100, width=370, height = 20)
+    Label(text='инициалы, фамилия', bg='#bdf0d4').place(x=10, y=340, height=20)
+    Entry(textvariable=make_json_str_bind(deal_json, "company.representative.name", bindings))\
+        .place(x=140, y=340, width=160, height=20)
 
-    Label(text='ОГРН', bg ='#bdf0d4').place(x=10, y=130, height = 20)
-    Entry(textvariable=ogrn).place(x=60, y=130, width=150, height = 20)
+    Label(text='электронная почта ЮЛ', bg='#bdf0d4').place(x=10, y=370, height=20)
+    Entry(textvariable=make_json_str_bind(deal_json, "company.email", bindings))\
+        .place(x=150, y=370, width=350, height=20)
 
-    Label(text='ИНН', bg ='#bdf0d4').place(x=10, y=160, height = 20)
-    Entry(textvariable=inn).place(x=60, y=160, width=150, height = 20)
+    Label(text='№ ДТ', bg='#bdf0d4').place(x=10, y=400, height=20)
+    Entry(textvariable=make_json_str_bind(deal_json, "numberDt", bindings))\
+        .place(x=50, y=400, width=200, height=20)
 
-    Label(text='КПП', bg ='#bdf0d4').place(x=10, y=190, height = 20)
-    Entry(textvariable=kpp).place(x=60, y=190, width=150, height = 20)
-
-    Label(text='дата государственной регистрации ЮЛ', bg ='#bdf0d4').place(x=10, y=220, height = 20)
-    Entry(textvariable=dateRegUl).place(x=240, y=220, width=90, height = 20)
-
-    Label(text='юридический адрес', bg ='#bdf0d4').place(x=10, y=250, height = 20)
-    Entry(textvariable=ulIndex).place(x=130, y=250, width=80, height = 20)
-    Entry(textvariable=ulSubrf).place(x=220, y=250, width=280, height = 20)
-    Entry(textvariable=ulCity).place(x=10, y=280, width=235, height = 20)
-    Entry(textvariable=ulStreetOffice).place(x=255, y=280, width=245, height = 20)
-
-    Label(text='законный представитель', bg ='#bdf0d4').place(x=10, y=310, height = 20)
-
-    listOfPositions = []
-    for k in dapJson['actionerPositions'].keys():
-        listOfPositions.append(k)
-    zpPosition_ = ttk.Combobox(winEnterWindow, textvariable=zpPosition, values = listOfPositions, height = 2)
-    zpPosition_['state']='readonly'
-    zpPosition_.place(x = 160, y = 310, width=150, height = 20)
-
-    Label(text='инициалы, фамилия', bg ='#bdf0d4').place(x=10, y=340, height = 20)
-    Entry(textvariable=zpName_ip).place(x=140, y=340, width=160, height = 20)
-
-    Label(text='электронная почта ЮЛ', bg ='#bdf0d4').place(x=10, y=370, height = 20)
-    Entry(textvariable=emailUl).place(x=150, y=370, width=350, height = 20)
-
-    Label(text='№ ДТ', bg ='#bdf0d4').place(x=10, y=400, height = 20)
-    Entry(textvariable=numberDt).place(x=50, y=400, width=200, height = 20)
-
-    Radiobutton(text="таможенный представитель", value=1, variable=tpdecl, bg ='#bdf0d4', activebackground = '#bdf0d4').place(x = 10, y = 430, height = 20)
-    Radiobutton(text="декларант", value=2, variable=tpdecl, bg ='#bdf0d4', activebackground = '#bdf0d4').place(x = 200, y = 430, height = 20)
+    Radiobutton(text="таможенный представитель", value=1,
+                variable=make_json_str_bind(deal_json, "customsRepresentative", bindings), bg='#bdf0d4',
+                activebackground='#bdf0d4').place(x=10, y=430, height=20)
+    Radiobutton(text="декларант", value=2,
+                variable=make_json_str_bind(deal_json, "customsRepresentative", bindings), bg='#bdf0d4',
+                activebackground='#bdf0d4').place(x=200, y=430, height=20)
 
     Button(text="Сохранить", command=show_message).place(relx=.5, rely=.95, anchor="c")
     Button(text="Отмена", command=close_window).place(relx=.97, rely=.95, anchor="e")
 
+    dialog.mainloop()
 
 
-    winEnterWindow.mainloop()
+def create_dialog():
+    dialog = Tk()
+    dialog.title("Добавить/Изменить ДАП")
+    w = dialog.winfo_screenwidth()
+    h = dialog.winfo_screenheight()
+    w = w // 2
+    h = h // 2
+    w = w - 255
+    h = h - 300
+    dialog.geometry('510x510+{}+{}'.format(w, h))
+    dialog.configure(bg='#bdf0d4')
+    return dialog
+
+
+def update_deals_storage(resources_provider: ResourcesProvider, deal_number: str, deal_json):
+    file_pointer = open(resources_provider.get_deals_path(), 'r', encoding='utf-8')
+    existing_deals = json.load(file_pointer)
+    file_pointer.close()
+    existing_deals[deal_number] = deal_json
+    file_pointer = open(resources_provider.get_deals_path(), 'w', encoding='utf-8')
+    file_pointer.write(str(json.dumps(existing_deals, ensure_ascii=False, sort_keys=True, indent=4)))
+    file_pointer.close()
+
+
+def make_json_str_bind(json_obj, dict_path, container: list):
+    bind = JsonToStrVarBind(json_obj, dict_path)
+    container.append(bind)
+    return bind.get_str_var()
