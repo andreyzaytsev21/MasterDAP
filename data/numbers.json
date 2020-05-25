@@ -1,132 +1,27 @@
 {
-    "2": {
-        "articleCode": "441",
+    "888": {
+        "code_art": "16.3",
+        "code_part": "-",
         "company": {
             "address": {
-                "city": "4124",
-                "index": "124",
-                "state": "4214",
-                "street": "4124"
+                "city": "г. Нижний Новгород",
+                "index": "603005",
+                "state": "Нижегородская обл.",
+                "street": "Ленина пр., д. 65, д. 1"
             },
-            "email": "4421",
-            "inn": "142",
-            "kpp": "4412",
-            "name": "124",
-            "ogrn": "44",
-            "registrationDate": "442",
+            "date_reg": "22.03.2003",
+            "email": "ivashkin@gaz.ru",
+            "inn": "52014596",
+            "kpp": "52014501",
+            "name": "ООО «ГАЗ»",
+            "ogrn": "1052365489",
             "representative": {
-                "name": "4412",
-                "position": "директор"
-            }
-        },
-        "customsRepresentative": "2",
-        "dayInit": "3",
-        "monthInit": "марта",
-        "numberDt": "421",
-        "partCode": "3"
-    },
-    "231": {
-        "articleCode": "32",
-        "company": {
-            "address": {
-                "city": "123",
-                "index": "123",
-                "state": "123",
-                "street": "12"
-            },
-            "email": "3312",
-            "inn": "312",
-            "kpp": "31",
-            "name": "123",
-            "ogrn": "123",
-            "registrationDate": "31",
-            "representative": {
-                "name": "3312",
+                "name": "А.В. Ивашкин",
                 "position": "генеральный директор"
             }
         },
-        "customsRepresentative": "2",
-        "dayInit": "31",
-        "monthInit": "февраля",
-        "numberDt": "331",
-        "partCode": "3"
-    },
-    "244": {
-        "articleCode": "1",
-        "company": {
-            "address": {
-                "city": "44",
-                "index": "4124",
-                "state": "14412",
-                "street": "124"
-            },
-            "email": "244",
-            "inn": "124",
-            "kpp": "441",
-            "name": "344",
-            "ogrn": "214",
-            "registrationDate": "412",
-            "representative": {
-                "name": "441",
-                "position": "директор"
-            }
-        },
-        "customsRepresentative": "1",
-        "dayInit": "1",
-        "monthInit": "января",
-        "numberDt": "14",
-        "partCode": "2"
-    },
-    "2441": {
-        "articleCode": "123",
-        "company": {
-            "address": {
-                "city": "123",
-                "index": "1424",
-                "state": "44",
-                "street": "44"
-            },
-            "email": "442",
-            "inn": "12412",
-            "kpp": "14214",
-            "name": "3",
-            "ogrn": "241",
-            "registrationDate": "442",
-            "representative": {
-                "name": "441",
-                "position": "директор"
-            }
-        },
-        "customsRepresentative": "2",
-        "dayInit": "27",
-        "monthInit": "марта",
-        "numberDt": "1",
-        "partCode": "44"
-    },
-    "2481": {
-        "articleCode": "1",
-        "company": {
-            "address": {
-                "city": "44",
-                "index": "4124",
-                "state": "14412",
-                "street": "124"
-            },
-            "email": "244",
-            "inn": "124",
-            "kpp": "441",
-            "name": "ОЧКО",
-            "ogrn": "214",
-            "registrationDate": "412",
-            "representative": {
-                "name": "441",
-                "position": "директор"
-            }
-        },
-        "customsRepresentative": "1",
-        "dayInit": "1",
-        "monthInit": "января",
-        "numberDt": "14",
-        "partCode": "2"
+        "day_init": "01",
+        "month_init": "мая",
+        "number_dt": "10418010/060920/0346596"
     }
 }

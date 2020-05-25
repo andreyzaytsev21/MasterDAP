@@ -1,6 +1,5 @@
 from tkinter import StringVar
 
-
 # json_object - это json с возможными данными
 # dict_path - путь до значения
 # Например:

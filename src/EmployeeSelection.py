@@ -45,12 +45,10 @@ def create_label(dialog: Tk):
 
 
 def create_combobox(selected_employee_reference: StringVar, list_of_employees: list, dialog: Tk):
-    combobox = ttk.Combobox(dialog,
-                            textvariable=selected_employee_reference,
-                            values=list_of_employees,
-                            height=len(list_of_employees))
-    combobox['state'] = 'readonly'
-    combobox.pack()
+    cmbx = ttk.Combobox(dialog, textvariable=selected_employee_reference, values=list_of_employees, height=len(list_of_employees),
+                 state = 'readonly')
+    cmbx.current(2)
+    cmbx.pack()
 
 
 def create_button(selected_employee_reference: StringVar, dialog: Tk):
@@ -61,7 +59,9 @@ def create_button(selected_employee_reference: StringVar, dialog: Tk):
             dialog.destroy()
 
     btn = Button(dialog, text="Далее", height=2, width=20, command=button_click_callback)
+    btn.focus_force()
     btn.pack(side=BOTTOM)
+
 
 
 def load_employees(resources_provider: ResourcesProvider):

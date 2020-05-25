@@ -2,7 +2,8 @@ import json
 
 from PyQt5 import Qt
 from PyQt5.QtGui import QPalette, QColor
-
+from tkinter import messagebox
+from tkinter import *
 from CreateDocs import runCreateDocs
 from ResourcesProvider import ResourcesProvider
 from SaveDeal import save_deal
@@ -14,6 +15,7 @@ def run_manage_deals(resourcesProvider: ResourcesProvider, chosenEmployeeOar: st
         def __init__(self):
             super().__init__()
 
+
             def create_button_callback():
                 save_deal(resourcesProvider)
                 update_table_content()
@@ -22,32 +24,44 @@ def run_manage_deals(resourcesProvider: ResourcesProvider, chosenEmployeeOar: st
                 save_deal(resourcesProvider, deal_number, deal_json)
                 update_table_content()
 
-            # def delete_button_callback()
+            def delete_button_callback(chosenDeal):
+                delWin = Tk()
+                delWin.withdraw()
+                answer = messagebox.askyesno(message="Удалить дело об АП\n\n10418000-" + chosenDeal + "/2020?")
+                delWin.destroy()
+                if answer == True:
+                    fileToDel = open(resourcesProvider.get_deals_path(), 'r', encoding='utf-8')
+                    fileChosenToDel = json.load(fileToDel)
+                    fileToDel.close()
+                    del fileChosenToDel[chosenDeal]
+                    fileToDel1 = open(resourcesProvider.get_deals_path(), 'w', encoding='utf-8')
+                    fileToDel1.write(str(json.dumps(fileChosenToDel, ensure_ascii=False, sort_keys=True, indent=4)))
+                    fileToDel1.close()
+                    update_table_content()
+                    delWin1 = Tk()
+                    delWin1.withdraw()
+                    messagebox.showinfo("Удалено", "Удалено дело об АП\n\n10418000-" + chosenDeal + "/2020")
+                    delWin1.destroy()
+
 
             layoutVertical = Qt.QVBoxLayout(self)
             iconCreate = Qt.QIcon("../icons/create.png")
             iconForm = Qt.QIcon("../icons/form.png")
             iconEdit = Qt.QIcon("../icons/edit.png")
             iconDelete = Qt.QIcon("../icons/delete.png")
-            iconMode = Qt.QIcon("../icons/mode.png")
 
             createCaseButton = Qt.QPushButton("Создать ДАП")
             createCaseButton.setFixedWidth(110)
             createCaseButton.setFixedHeight(30)
             createCaseButton.setIcon(iconCreate)
             createCaseButton.clicked.connect(create_button_callback)
-            modeButton = Qt.QPushButton()
-            modeButton.setFixedHeight(30)
-            modeButton.setFixedWidth(30)
-            modeButton.setIcon(iconMode)
-            # modeButton.pressed.connect(self.poverhMode)
             layoutVertical.addWidget(createCaseButton)
 
-            labels = [""] + [""] + [""] + ["№ дела об АП"] + ["КоАП РФ"] + ["юридическое лицо"] + ["ИНН"] + [
-                "юридический адрес"]
+            labels = [""] + [""] + [""] + ["№ дела об АП"] + ["КоАП РФ"] + ["дата возбуждения"] + ["юридическое лицо"] + \
+                     ["юридический адрес"] + ["ИНН"] + ["КПП"] + ["ОГРН"] + ["законный представитель"] + ["эл.почта"] + ["№ ДТ"]
 
             table = Qt.QTableWidget(0, len(labels))
-            table.setColumnHidden(10, False)
+            table.setColumnHidden(16, False)
             table.setHorizontalHeaderLabels(labels)
 
             def update_table_content():
@@ -59,10 +73,17 @@ def run_manage_deals(resourcesProvider: ResourcesProvider, chosenEmployeeOar: st
                 allItemsReversed = sorted(allItems, reverse=True)
 
                 for i, (key, value) in enumerate(allItemsReversed):
-                    rows = [""] + [""] + [""] + ["10418000-" + key + "/2020"] + \
-                           [d[key]["articleCode"]] + [d[key]["company"]["name"]] + [d[key]["company"]["inn"]] + \
+                    if d[key]["code_part"] == '-':
+                        code_full_sh = d[key]["code_art"]
+                    else:
+                        code_full_sh = d[key]["code_art"] + " ч." + d[key]["code_part"]
+                    rows = [""] + [""] + [""] + ["10418000-" + key + "/2020"] + [code_full_sh] + \
+                           [d[key]["day_init"] + " " + d[key]["month_init"] + " 2020"] + [d[key]["company"]["name"]] + \
                            [d[key]["company"]["address"]["index"] + ", " + d[key]["company"]["address"]["city"] + ", " + \
-                            d[key]["company"]["address"]["street"]]
+                            d[key]["company"]["address"]["street"]] + \
+                           [d[key]["company"]["inn"]] + [d[key]["company"]["kpp"]] + [d[key]["company"]["ogrn"]] + \
+                           [d[key]["company"]["representative"]["position"] + ", " + d[key]["company"]["representative"]["name"]] + \
+                           [d[key]["company"]["email"]] + [d[key]["number_dt"]]
                     table.insertRow(table.rowCount())
                     buttonCreate = Qt.QPushButton()
                     buttonCreate.setIcon(iconForm)
@@ -79,7 +100,7 @@ def run_manage_deals(resourcesProvider: ResourcesProvider, chosenEmployeeOar: st
                     )
                     table.setCellWidget(i, 1, buttonEdit)
                     buttonDelete = Qt.QPushButton()
-                    # buttonDelete.pressed.connect(lambda chosenDeal=key: self.goToDeleteDeal(chosenDeal))
+                    buttonDelete.pressed.connect(lambda chosenDeal = key: delete_button_callback(chosenDeal))
                     buttonDelete.setIcon(iconDelete)
                     table.setCellWidget(i, 2, buttonDelete)
 
@@ -92,18 +113,13 @@ def run_manage_deals(resourcesProvider: ResourcesProvider, chosenEmployeeOar: st
             table.show()
 
             layoutVertical.addWidget(table)
-            layoutVertical.addWidget(modeButton)
 
-        # def poverhMode(app):
-        #   workWin.wm_attributes('-topmost',1)
-        # def goToDeleteDeal(self, chosenDeal):
-
-        # runDeleteDeal(resourcesProvider, chosen Deal)
-
-    # if __name__ == '__main__':
     app = Qt.QApplication([])
     manage_deals_widget = ManageDealsWidget()
-    manage_deals_widget.setWindowTitle("МастерДАП / Приволжская электронная таможня - ОАР - " + chosenEmployeeOar)
+    with open(resourcesProvider._get_config_path(), 'r', encoding='utf-8') as f:
+        dapJson = json.load(f)
+    dolzhnost = dapJson['employeesOar'][chosenEmployeeOar]['doloar_ip_sh']
+    manage_deals_widget.setWindowTitle("МастерДАП / Приволжская электронная таможня - ОАР - " + chosenEmployeeOar + " (" + dolzhnost + ")")
 
     palette = QPalette()
     palette.setColor(QPalette.Window, QColor('#bdf0d4'))
