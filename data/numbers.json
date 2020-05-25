@@ -21,7 +21,11 @@
             }
         },
         "day_init": "01",
-        "month_init": "мая",
+        "day_protokol": "21",
+        "day_rassm": "23",
+        "month_init": "июля",
+        "month_protokol": "февраля",
+        "month_rassm": "февраля",
         "number_dt": "10418010/060920/0346596"
     }
 }
