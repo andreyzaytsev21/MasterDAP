@@ -5,6 +5,7 @@ from tkinter import ttk
 from docxtpl import DocxTemplate
 
 from utils.storage.ResourcesManager import ResourcesProvider
+from utils.tkinter.DialogUtils import create_dialog
 
 
 def create_docs(resources_provider: ResourcesProvider, chosen_deal: str, chosen_employee: str):
@@ -298,18 +299,15 @@ def create_docs(resources_provider: ResourcesProvider, chosen_deal: str, chosen_
             self.update_idletasks()
             self.canvas.config(scrollregion=self.canvas.bbox(self.windows_item))
 
-    winChooseDocs = Tk()
-    winChooseDocs.title("Выбор документов для ДАП 10418000-" + chosen_deal + "/2020")
-    w = winChooseDocs.winfo_screenwidth()
-    h = winChooseDocs.winfo_screenheight()
-    w = w // 2
-    w = w // 2
-    h = h // 2
-    w = w - 0
-    h = h - 470
-    winChooseDocs.geometry('500x850+{}+{}'.format(w, h))
+    dialog = create_dialog(
+        "Выбор документов для ДАП 10418000-" + chosen_deal + "/2020",
+        500,
+        850,
+        220,
+        470
+    )
 
-    body = Frame(winChooseDocs)
+    body = Frame(dialog)
     body.pack(fill='both', expand=True)
 
     scrollable_body = Scrollable(body)
@@ -685,6 +683,6 @@ def create_docs(resources_provider: ResourcesProvider, chosen_deal: str, chosen_
     gortel = dap_json['employeesOar'][employeeOar]['gortel']
 
     scrollable_body.update()
-    winChooseDocs.focus_force()
-    winChooseDocs.attributes('-topmost', True)
-    winChooseDocs.mainloop()
+    dialog.focus_force()
+    dialog.attributes('-topmost', True)
+    dialog.mainloop()
